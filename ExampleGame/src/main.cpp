@@ -1,12 +1,7 @@
-#include "Player.h"
-#include "Score.h"
-#include "GameOverScreen.h"
+#include "MyGame.h"
 
 int main() {
-    Player player;
-    Score score(player);
-    GameOverScreen gameOverScreen(player);
-    player.getDamage(40);
-    player.getDamage(40);
-    player.getDamage(40);
+    MyGame game;
+    game.run();
+    return 0;
 }

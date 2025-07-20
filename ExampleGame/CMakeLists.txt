@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.18)
 
-set(SOURCE_FILES src/main.cpp src/Player.h src/Score.h src/GameOverScreen.h)
+set(SOURCE_FILES src/main.cpp src/Player.h src/Score.h src/GameOverScreen.h
+        src/MyGame.h
+)
 set(EXE_FILE ExampleGame)
 
 add_executable(${EXE_FILE} ${SOURCE_FILES})
