@@ -23,9 +23,7 @@ public:
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         entt::registry& registry = scene.getRegistry();
-
         entt::entity entity = registry.create();
-
         registry.emplace<gl3::ecs::components::Transform>(
             entity,
             glm::vec2(0.0f, 0.0f),
@@ -33,10 +31,14 @@ public:
             glm::vec2(100.0f, 100.0f)
         );
 
+
+
         glm::vec4 color = {1.0f, 1.0f, 0.0f, 1.0f};
 
         auto texture = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/turret_placeholder.png"));
         registry.emplace<gl3::ecs::components::Sprite>(entity, texture, color);
+
+
 
     }
 
@@ -53,6 +55,7 @@ public:
         glm::mat4 view = glm::mat4(1.0f);
 
         entt::registry& registry = scene.getRegistry();
+
         renderSystem.render(registry, projection * view);
 
     }

@@ -1,0 +1,21 @@
+{
+  "waves": [
+    {
+      "wave_id": 1,
+      "start_time": 0.0,
+      "spawns": [
+        { "delay": 0.0, "type": "enemy_type_A", "position": [5.0, 0.0] },
+        { "delay": 1.0, "type": "enemy_type_A", "position": [5.0, 0.0] },
+        { "delay": 3.0, "type": "enemy_type_B", "position": [5.0, 0.0] }
+      ]
+    },
+    {
+      "wave_id": 2,
+      "start_time": 30.0,
+      "spawns": [
+        { "delay": 0.0, "type": "enemy_type_A", "position": [3.0, 1.0] },
+        { "delay": 0.5, "type": "enemy_type_A", "position": [3.0, 1.0] }
+      ]
+    }
+  ]
+}

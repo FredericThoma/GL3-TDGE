@@ -19,13 +19,16 @@ add_library(${ENGINE_NAME}
         include/engine/ecs/components/Sprite.h
         include/engine/ecs/systems/RenderSystem.h
         src/ecs/systems/RenderSystem.cpp
+        include/engine/ecs/components/Tags.h
+        include/engine/waves/WaveDefinition.h
+        src/waves/WaveDefinition.cpp
 )
 
 target_compile_features(${ENGINE_NAME} PRIVATE cxx_std_17)
 
 target_include_directories(${ENGINE_NAME} PUBLIC include)
 
-target_link_libraries(${ENGINE_NAME} PUBLIC glad glfw glm soloud tinygltf entt)
+target_link_libraries(${ENGINE_NAME} PUBLIC glad glfw glm soloud tinygltf entt nlohmann_json)
 
 target_compile_definitions(${ENGINE_NAME} PUBLIC ASSET_ROOT=${CMAKE_SOURCE_DIR}/assets)
 
