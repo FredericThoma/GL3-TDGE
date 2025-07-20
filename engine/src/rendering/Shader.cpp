@@ -23,6 +23,12 @@ namespace gl3 {
         glDetachShader(shaderProgram, fragmentShader);
     }
 
+    void Shader::setInt(const std::string& uniformName, int value) const {
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        glUniform1i(uniformLocation, value);
+    }
+
+
     unsigned int Shader::loadAndCompileShader(GLuint shaderType, const fs::path &shaderPath) {
         auto shaderSource = readText(shaderPath);
         auto source = shaderSource.c_str();

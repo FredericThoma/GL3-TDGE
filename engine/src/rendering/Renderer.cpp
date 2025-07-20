@@ -1,16 +1,16 @@
-#include "../../include/engine/rendering/Renderer2D.h"
+#include "../../include/engine/rendering/Renderer.h"
 #include <glad/glad.h>
 #include "../../include/engine/rendering/Assets.h"
 #include "../../include/engine/rendering/Texture.h"
 
 namespace gl3::renderer {
 
-    Renderer2D::Renderer2D()
+    Renderer::Renderer()
     : shader(
     resolveAssetPath("shaders/vertexShader.vert"),
     resolveAssetPath("shaders/fragmentShader.frag")
     ),
-          texture(resolveAssetPath("textures/turret_placeholder.png"), 0) // Replace with your actual texture path
+          texture(resolveAssetPath("textures/turret_placeholder.png"), 0)
     {
         float vertices[] = {
             0.0f, 0.0f, 0.0f,  0.0f, 0.0f,
@@ -43,7 +43,7 @@ namespace gl3::renderer {
         glBindVertexArray(0);
     }
 
-    void Renderer2D::drawQuad(const glm::mat4& mvp, const glm::vec4& color) {
+    void Renderer::drawQuad(const glm::mat4& mvp, const glm::vec4& color) {
         shader.use();
         shader.setMatrix("u_MVP", mvp);
         shader.setVector("u_Color", color);
@@ -53,7 +53,23 @@ namespace gl3::renderer {
         glBindVertexArray(0);
     }
 
-    Renderer2D::~Renderer2D() {
+    void Renderer::drawTexturedQuad(const glm::mat4& mvp, gl3::Texture* texture, const glm::vec4& color) {
+        shader.use();
+        shader.setMatrix("u_MVP", mvp);
+        shader.setVector("u_Color", color);
+
+        glActiveTexture(GL_TEXTURE0);
+        texture->bind(0);
+        shader.setInt("u_Texture", 0);
+
+        glBindVertexArray(vao);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+    }
+
+
+
+    Renderer::~Renderer() {
         glDeleteBuffers(1, &vbo);
         glDeleteBuffers(1, &ebo);
         glDeleteVertexArrays(1, &vao);

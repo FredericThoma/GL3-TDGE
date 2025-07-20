@@ -11,6 +11,7 @@ namespace gl3 {
 
         void bind(unsigned int slot = 0) const;
         void unbind() const;
+        unsigned int getID() const;
 
     private:
         unsigned int textureID = 0;

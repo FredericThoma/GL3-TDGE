@@ -54,4 +54,7 @@ namespace gl3 {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
+    unsigned int Texture::getID() const {
+        return textureID;
+    }
 }

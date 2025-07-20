@@ -14,6 +14,11 @@ add_library(${ENGINE_NAME}
         ${SOURCE_LIST}
         include/engine/rendering/Texture.h
         src/rendering/Texture.cpp
+        include/engine/ecs/Scene.h
+        include/engine/ecs/components/Transform.h
+        include/engine/ecs/components/Sprite.h
+        include/engine/ecs/systems/RenderSystem.h
+        src/ecs/systems/RenderSystem.cpp
 )
 
 target_compile_features(${ENGINE_NAME} PRIVATE cxx_std_17)

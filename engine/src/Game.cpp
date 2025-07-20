@@ -2,7 +2,7 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "engine/Game.h"
-#include "engine/rendering/Renderer2D.h"
+#include "engine/rendering/Renderer.h"
 
 
 namespace gl3::engine {
