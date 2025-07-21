@@ -1,16 +1,17 @@
 #pragma once
 
-#include <entt/entt.hpp>
-#include <glm/glm.hpp>
-#include "engine/core/Grid.h"
-#include "engine/ecs/components/Path.h"
+#include "entt/entt.hpp"
 
 class MovementSystem {
 public:
-    MovementSystem(Grid& grid);
+    explicit MovementSystem(entt::registry& reg);
 
-    void update(entt::registry& registry, float deltaTime);
+    void update();
+    void moveEntity(entt::entity entity);
+    void moveEntityAlongPath(entt::entity entity);
 
 private:
-    Grid& grid_;
+    static bool checkCanMove(entt::entity entity);
+
+    entt::registry& registry;
 };

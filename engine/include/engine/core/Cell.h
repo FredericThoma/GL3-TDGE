@@ -1,6 +1,6 @@
 #pragma once
 
-#include "glm/vec2.hpp"
+#include "glm/vec3.hpp"
 
 enum class CellType {
     Empty,
@@ -10,8 +10,10 @@ enum class CellType {
 };
 
 struct Cell {
-    CellType type = CellType::Empty;
-    glm::vec2 worldPosition;
-    int gridX;
-    int gridY;
+    CellType type;
+    glm::vec3 worldPosition;
+    int id;
+
+    Cell(CellType type = CellType::Empty, const glm::vec3& worldPosition = glm::vec3(0.0f), int id = 0)
+       : type(type), worldPosition(worldPosition), id(id) {}
 };

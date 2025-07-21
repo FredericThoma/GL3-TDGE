@@ -10,6 +10,12 @@ namespace gl3::ecs::components {
         float rotation = 0.0f; // degrees
         glm::vec2 scale = {1.0f, 1.0f};
 
+
+        Transform(const glm::vec3& pos, float rot, const glm::vec2& sc)
+            : position(pos), rotation(rot), scale(sc) {}
+        Transform() = default;
+
+
         glm::mat4 getTransformMatrix() const {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, position);

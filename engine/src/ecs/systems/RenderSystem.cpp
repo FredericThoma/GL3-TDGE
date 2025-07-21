@@ -21,6 +21,7 @@ namespace gl3::ecs::systems {
 
         for (auto entity : view) {
             const auto& transform = view.get<components::Transform>(entity);
+            std::cout << transform.position.x << " " << transform.position.y << std::endl;
             const auto& sprite = view.get<components::Sprite>(entity);
 
             glm::mat4 model = transform.getTransformMatrix();
@@ -46,9 +47,9 @@ namespace gl3::ecs::systems {
 break;
             }
             glm::mat4 viewProj = projectionMatrix * viewMatrix;
-            glm::vec3 pos3D = glm::vec3(cell.worldPosition, 0.0f); // Convert vec2 to vec3
+            glm::vec3 pos3D = cell.worldPosition;
             glm::mat4 model = glm::translate(glm::mat4(1.0f), pos3D);
-            model = glm::scale(model, glm::vec3(grid.getCellSize(), grid.getCellSize(), 1.0f));
+            model = glm::scale(model, glm::vec3(grid.GetCellSize(), grid.GetCellSize(), 1.0f));
             glm::mat4 mvp = viewProj * model;
             renderer.drawQuad(mvp, color);
         }

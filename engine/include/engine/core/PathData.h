@@ -1,13 +1,21 @@
-#include "engine/ecs/components/GridPosition.h"
+#include "Grid.h"
 
 struct PathData {
-    std::vector<GridPosition> points;
+    glm::vec3 points;
+    Grid* grid = nullptr;
+    std::vector<Cell*> cells;
 
-    const GridPosition& at(std::size_t index) const {
-        return points.at(index);
-    }
+    void setCells()
+    {
+        cells.clear();
 
-    std::size_t length() const {
-        return points.size();
+        if (!grid) return;
+
+        for (const auto& p : points)
+        {
+            if (Cell* cell = grid->GetCellAtPos(p))
+                cells.push_back(cell);
+        }
+
     }
 };

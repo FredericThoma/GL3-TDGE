@@ -10,6 +10,9 @@
 #include "engine/rendering/Assets.h"
 #include "engine/ecs/components/Sprite.h"
 #include "engine/core/Grid.h"
+#include "engine/ecs/systems/MovementSystem.h"
+#include "engine/ecs/systems/SpawnSystem.h"
+#include "engine/ecs/systems/WaveSystem.h"
 
 constexpr int WIDTH = 1280;
 constexpr int HEIGHT = 1280;
@@ -30,6 +33,7 @@ public:
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        entt::registry& registry = scene.getRegistry();
 
         int width, height;
         glfwGetWindowSize(getWindow(), &width, &height);
@@ -37,9 +41,12 @@ public:
         glm::mat4 view = glm::mat4(1.0f);
         renderSystem.SetView(view);
         renderSystem.SetProjection(projection);
-
-
-        entt::registry& registry = scene.getRegistry();
+        spawnSystem = std::make_unique<SpawnSystem>(registry);
+        waveSystem = std::make_unique<WaveSystem>(registry);
+        movementSystem = std::make_unique<MovementSystem>(registry);
+        auto all_waves = waveSystem->allWavesFromJson(gl3::resolveAssetPath("wave_definition_test.json"));
+        waveSystem->setWaves(all_waves);
+        waveSystem->resetWaves();
 
         std::vector<glm::ivec2> pathData;
         for (int x = 0; x <= 18; ++x) {
@@ -70,7 +77,10 @@ public:
     }
 
     void update(GLFWwindow* window) override {
-        // TODO: Input, game logic
+        std::cout << "update" << std::endl;
+        waveSystem->update();
+        spawnSystem->update();
+        movementSystem->update();
     }
 
     void draw() override {
@@ -87,4 +97,7 @@ private:
     Grid grid;
     gl3::ecs::Scene scene;
     gl3::ecs::systems::RenderSystem renderSystem;
+    std::unique_ptr<WaveSystem> waveSystem;
+    std::unique_ptr<SpawnSystem> spawnSystem;
+    std::unique_ptr<MovementSystem> movementSystem;
 };
