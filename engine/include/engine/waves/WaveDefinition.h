@@ -26,7 +26,7 @@ namespace engine::waves {
     struct WaveTemplateSet {
         std::vector<WaveTemplate> waves;
 
-        static WaveTemplateSet from_json_file(const std::string& file_path);
+        static WaveTemplateSet from_json_file(const std::filesystem::path& file_path);
     };
 
 }

@@ -1,6 +1,9 @@
 #include <stdexcept>
 #include "engine/Context.h"
 
+#include <chrono>
+#include <thread>
+
 namespace gl3::engine::context {
     void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
         glViewport(0, 0, width, height);
@@ -31,13 +34,28 @@ namespace gl3::engine::context {
     }
 
     void Context::run(const Context::Callback& update) {
-        glfwSetTime(1.0 / 60);
-        while(!glfwWindowShouldClose(window)) {
+        int targetFPS = 60;
+        double frameDuration = 1.0 / targetFPS;
+
+        while (!glfwWindowShouldClose(window)) {
+            double frameStartTime = glfwGetTime();
+
             glClearColor(0.172f, 0.243f, 0.313f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            update(*this);
-            glfwPollEvents();
+
+            update(*this); // This runs Game::update() and Game::draw()
+
             glfwSwapBuffers(window);
+            glfwPollEvents();
+
+            // FPS limiting
+            double frameEndTime = glfwGetTime();
+            double elapsed = frameEndTime - frameStartTime;
+            double sleepTime = frameDuration - elapsed;
+
+            if (sleepTime > 0.0) {
+                std::this_thread::sleep_for(std::chrono::duration<double>(sleepTime));
+            }
         }
     }
 

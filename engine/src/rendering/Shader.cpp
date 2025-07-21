@@ -28,6 +28,9 @@ namespace gl3 {
         glUniform1i(uniformLocation, value);
     }
 
+    void Shader::setBool(const std::string& name, bool value) {
+        glUniform1i(glGetUniformLocation(shaderProgram, name.c_str()), (int)value);
+    }
 
     unsigned int Shader::loadAndCompileShader(GLuint shaderType, const fs::path &shaderPath) {
         auto shaderSource = readText(shaderPath);

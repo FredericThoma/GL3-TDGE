@@ -48,6 +48,9 @@ namespace gl3::renderer {
         shader.setMatrix("u_MVP", mvp);
         shader.setVector("u_Color", color);
 
+        shader.setBool("u_UseTexture", false);
+
+
         glBindVertexArray(vao);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
@@ -60,6 +63,7 @@ namespace gl3::renderer {
 
         glActiveTexture(GL_TEXTURE0);
         texture->bind(0);
+        shader.setBool("u_UseTexture", true);
         shader.setInt("u_Texture", 0);
 
         glBindVertexArray(vao);

@@ -1,7 +1,7 @@
+#include <iostream>
+
 #include "engine/Game.h"
 #include "Player.h"
-#include "Score.h"
-#include "GameOverScreen.h"
 #include "engine/rendering/Texture.h"
 #include "engine/rendering/Renderer.h"
 #include "engine/ecs/Scene.h"
@@ -9,24 +9,39 @@
 #include "engine/ecs/components/Transform.h"
 #include "engine/rendering/Assets.h"
 #include "engine/ecs/components/Sprite.h"
+#include "engine/core/Grid.h"
+
+constexpr int WIDTH = 1280;
+constexpr int HEIGHT = 1280;
+
+
 
 class MyGame : public gl3::engine::Game {
 public:
     MyGame()
-        : Game(1280, 960, "My 2D Game"),
+        : Game(1280, 1280, "My 2D Game"),
           scene(),
           renderSystem(renderer){}
 
     void start() override {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        int width, height;
+        glfwGetWindowSize(getWindow(), &width, &height);
+        glm::mat4 projection = glm::ortho(0.0f, float(width), 0.0f, float(height), -2.0f, 2.0f);
+        glm::mat4 view = glm::mat4(1.0f);
+        renderSystem.SetView(view);
+        renderSystem.SetProjection(projection);
+
 
         entt::registry& registry = scene.getRegistry();
         entt::entity entity = registry.create();
         registry.emplace<gl3::ecs::components::Transform>(
             entity,
-            glm::vec2(0.0f, 0.0f),
+            glm::vec3(200.0, 0.0f, 1.0f),
             0.0f,
             glm::vec2(100.0f, 100.0f)
         );
@@ -39,7 +54,6 @@ public:
         registry.emplace<gl3::ecs::components::Sprite>(entity, texture, color);
 
 
-
     }
 
     void update(GLFWwindow* window) override {
@@ -47,16 +61,12 @@ public:
     }
 
     void draw() override {
-        glClear(GL_COLOR_BUFFER_BIT);
-        int width, height;
-        glfwGetWindowSize(getWindow(), &width, &height);
-
-        glm::mat4 projection = glm::ortho(0.0f, float(width), 0.0f, float(height), -1.0f, 1.0f);
-        glm::mat4 view = glm::mat4(1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         entt::registry& registry = scene.getRegistry();
-
-        renderSystem.render(registry, projection * view);
+        Grid grid = Grid(WIDTH, HEIGHT);
+        grid.draw(renderSystem);
+        renderSystem.render(registry);
 
     }
 private:

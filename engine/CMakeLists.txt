@@ -22,6 +22,13 @@ add_library(${ENGINE_NAME}
         include/engine/ecs/components/Tags.h
         include/engine/waves/WaveDefinition.h
         src/waves/WaveDefinition.cpp
+        src/ecs/systems/WaveSystem.cpp
+        include/engine/ecs/systems/WaveSystem.h
+        include/engine/ecs/components/WaveState.h
+        src/core/Grid.cpp
+        include/engine/core/Grid.h
+        src/core/Cell.cpp
+        include/engine/core/Cell.h
 )
 
 target_compile_features(${ENGINE_NAME} PRIVATE cxx_std_17)

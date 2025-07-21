@@ -7,11 +7,11 @@ using json = nlohmann::json;
 using namespace engine::waves;
 
 EnemySpawnTemplate EnemySpawnTemplate::from_json(const json& j) {
-    return EnemySpawnTemplate {
-        .delay = j.value("delay", 0.0f),
-        .type = j.at("type").get<std::string>(),
-        .position = glm::vec2(j.at("position")[0], j.at("position")[1])
-    };
+    EnemySpawnTemplate spawn;
+    spawn.delay = j.value("delay", 0.0f);
+    spawn.type = j.at("type").get<std::string>();
+    spawn.position = glm::vec2(j.at("position")[0], j.at("position")[1]);
+    return spawn;
 }
 
 WaveTemplate WaveTemplate::from_json(const json& j) {
@@ -24,10 +24,10 @@ WaveTemplate WaveTemplate::from_json(const json& j) {
     return wave;
 }
 
-WaveTemplateSet WaveTemplateSet::from_json_file(const std::string& file_path) {
+WaveTemplateSet WaveTemplateSet::from_json_file(const std::filesystem::path& file_path) {
     std::ifstream file(file_path);
     if (!file.is_open()) {
-        throw std::runtime_error("Failed to open wave definition file: " + file_path);
+        throw std::runtime_error("Failed to open wave definition file: " + file_path.string());
     }
 
     json j;
