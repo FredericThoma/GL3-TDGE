@@ -1,4 +1,6 @@
 #include "../../include/engine/rendering/Renderer.h"
+
+#include <iostream>
 #include <glad/glad.h>
 #include "../../include/engine/rendering/Assets.h"
 #include "../../include/engine/rendering/Texture.h"

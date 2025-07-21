@@ -28,6 +28,11 @@ add_library(${ENGINE_NAME}
         src/core/Grid.cpp
         include/engine/core/Grid.h
         src/core/Cell.cpp
+        include/engine/ecs/components/Path.h
+        include/engine/ecs/systems/MovementSystem.cpp
+        include/engine/ecs/systems/MovementSystem.h
+        include/engine/ecs/components/GridPosition.h
+        include/engine/core/PathData.h
         include/engine/core/Cell.h
 )
 

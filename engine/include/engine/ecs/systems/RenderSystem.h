@@ -4,6 +4,7 @@
 #include "engine/rendering/Renderer.h"
 #include "engine/ecs/components/Transform.h"
 #include "engine/ecs/components/Sprite.h"
+#include "engine/core/Grid.h"
 
 namespace gl3::ecs::systems {
 
@@ -20,6 +21,7 @@ namespace gl3::ecs::systems {
         void renderOverlappingTiles(float tileSizeX, float tileSizeY);
         void render(entt::registry& registry);
         void renderChessboard(int boardWidth, int boardHeight, float tileSizeX, float tileSizeY);
+        void renderGrid(Grid grid);
         void RenderSystem::renderChessboard2(int boardWidth, int boardHeight, float tileSizeX, float tileSizeY, const glm::mat4& viewProj);
         void SetProjection(const glm::mat4& proj) {
             projectionMatrix = proj;

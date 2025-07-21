@@ -1,26 +1,27 @@
-#include <vector>
+#pragma once
 
-#include "engine/ecs/systems/RenderSystem.h"
-#include "entt/entt.hpp"
+#include <vector>
+#include "engine/core/Cell.h"
+#include "glm/vec2.hpp"
 
 class Grid {
 public:
-    struct Cell {
-        std::vector<entt::entity> entities;
-    };
+    Grid() = default;
+    Grid(int width, int height, float cellSize);
+    std::vector<Cell> getAllCells() const;
+    Cell& GetCell(int x, int y);
+    const Cell& GetCell(int x, int y) const;
 
-    Grid(int width, int height);
+    std::vector<Cell>& GetNeighbors(int x, int y); // Optional für Pfadsuche
 
-    const Cell& at(int x, int y) const;
-    void addEntity(entt::entity e, int x, int y);
-    void removeEntity(entt::entity e, int x, int y);
-    void draw(gl3::ecs::systems::RenderSystem& rendersystem) const;
-
-    int width() const;   // in cells
-    int height() const;  // in cells
+    int GetWidth() const { return width; }
+    int GetHeight() const { return height; }
+    float getCellSize() const { return cellSize; }
+    void SetPath(const std::vector<glm::ivec2>& pathCells);
 
 private:
-    int width_, height_;           // original screen width/height in pixels
-    int gridWidth_, gridHeight_;   // computed grid dimensions in cells
-    std::vector<std::vector<Cell>> grid_;
+    int width;
+    int height;
+    float cellSize;
+    std::vector<std::vector<Cell>> cells;
 };

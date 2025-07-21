@@ -1,4 +1,6 @@
 #include "engine/ecs/systems/RenderSystem.h"
+
+#include <iostream>
 #include <glm/gtx/string_cast.hpp>
 #include "engine/rendering/Renderer.h"
 
@@ -24,6 +26,31 @@ namespace gl3::ecs::systems {
             glm::mat4 model = transform.getTransformMatrix();
             glm::mat4 mvp = viewProj * model;
             renderer.drawTexturedQuad(mvp, sprite.texture.get(), sprite.color);
+        }
+    }
+
+    void RenderSystem::renderGrid(Grid grid)
+    {
+        auto allCells = grid.getAllCells();
+        glm::vec4 color = glm::vec4(1.0f);
+        for (auto cell : allCells)
+        {
+
+            switch (cell.type)
+            {
+                case CellType::Path:
+                color = glm::vec4(0.788f, 0.537f, 0.071f, 1.0f);
+                break;
+                default:
+                color = glm::vec4(0.2f, 0.2f, 1.0f, 1.0f);
+break;
+            }
+            glm::mat4 viewProj = projectionMatrix * viewMatrix;
+            glm::vec3 pos3D = glm::vec3(cell.worldPosition, 0.0f); // Convert vec2 to vec3
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), pos3D);
+            model = glm::scale(model, glm::vec3(grid.getCellSize(), grid.getCellSize(), 1.0f));
+            glm::mat4 mvp = viewProj * model;
+            renderer.drawQuad(mvp, color);
         }
     }
 

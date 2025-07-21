@@ -13,11 +13,13 @@
 
 constexpr int WIDTH = 1280;
 constexpr int HEIGHT = 1280;
+constexpr int CELLSIZE = 64;
 
 
 
 class MyGame : public gl3::engine::Game {
 public:
+
     MyGame()
         : Game(1280, 1280, "My 2D Game"),
           scene(),
@@ -38,10 +40,21 @@ public:
 
 
         entt::registry& registry = scene.getRegistry();
+
+        std::vector<glm::ivec2> pathData;
+        for (int x = 0; x <= 18; ++x) {
+            pathData.emplace_back(x, 1); // move right
+        }
+        for (int y = 1; y <= 19; ++y) {
+            pathData.emplace_back(18, y); // move up
+        }
+
+        grid = Grid(WIDTH, HEIGHT, CELLSIZE);
+        grid.SetPath(pathData);
         entt::entity entity = registry.create();
         registry.emplace<gl3::ecs::components::Transform>(
             entity,
-            glm::vec3(200.0, 0.0f, 1.0f),
+            glm::vec3(500.0, 500.0f, 1.0f),
             0.0f,
             glm::vec2(100.0f, 100.0f)
         );
@@ -64,15 +77,14 @@ public:
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         entt::registry& registry = scene.getRegistry();
-        Grid grid = Grid(WIDTH, HEIGHT);
-        grid.draw(renderSystem);
+        renderSystem.renderGrid(grid);
         renderSystem.render(registry);
 
     }
 private:
 
     gl3::renderer::Renderer renderer;
-
+    Grid grid;
     gl3::ecs::Scene scene;
     gl3::ecs::systems::RenderSystem renderSystem;
 };

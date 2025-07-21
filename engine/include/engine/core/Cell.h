@@ -1,16 +1,17 @@
-//
-// Created by overo on 21.07.2025.
-//
+#pragma once
 
-#ifndef CELL_H
-#define CELL_H
+#include "glm/vec2.hpp"
 
-
-
-class Cell {
-
+enum class CellType {
+    Empty,
+    Path,
+    Buildable,
+    Blocked
 };
 
-
-
-#endif //CELL_H
+struct Cell {
+    CellType type = CellType::Empty;
+    glm::vec2 worldPosition;
+    int gridX;
+    int gridY;
+};

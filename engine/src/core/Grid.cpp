@@ -1,65 +1,82 @@
 #include "engine/core/Grid.h"
-#include "engine/ecs/systems/RenderSystem.h"
+
+#include <iostream>
 #include <stdexcept>
-#include <glm/gtc/matrix_transform.hpp>
-#include <algorithm>
+#include <vector>
 
-constexpr int TILE_SIZE = 128;
+#include "glm/vec2.hpp"
 
-Grid::Grid(int width, int height)
-    : width_(width), height_(height),
-      gridWidth_(width / TILE_SIZE), gridHeight_(height / TILE_SIZE),
-      grid_(gridHeight_, std::vector<Cell>(gridWidth_)) {
-    // Nothing else needed
-}
+Grid::Grid(int width, int height, float cellSize)
+    : width(width), height(height), cellSize(cellSize) {
 
-void Grid::draw(gl3::ecs::systems::RenderSystem& rendersystem) const {
-    const float tileSize = static_cast<float>(TILE_SIZE);
+    int cols = static_cast<int>(width / cellSize);
+    int rows = static_cast<int>(height / cellSize);
 
-    glm::mat4 viewProj = rendersystem.GetProjection() * rendersystem.GetView();
-    gl3::renderer::Renderer& renderer = rendersystem.getRenderer();
+    cells.resize(rows, std::vector<Cell>(cols));
 
-    for (int y = 0; y < gridHeight_; ++y) {
-        for (int x = 0; x < gridWidth_; ++x) {
-            const auto& cell = grid_[y][x];
-
-            glm::vec4 color;
-            if (cell.entities.empty()) {
-                bool isLightSquare = (x + y) % 2 == 0;
-                color = isLightSquare
-                    ? glm::vec4(0.9f, 0.9f, 0.9f, 1.0f)
-                    : glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
-            } else {
-                color = glm::vec4(0.8f, 0.3f, 0.3f, 1.0f);
-            }
-
-            glm::mat4 model = glm::translate(glm::mat4(1.0f),
-                                             glm::vec3(x * tileSize, y * tileSize, 0.0f));
-            model = glm::scale(model, glm::vec3(tileSize, tileSize, 1.0f));
-            glm::mat4 mvp = viewProj * model;
-
-            renderer.drawQuad(mvp, color);
+    for (int y = 0; y < rows; ++y) {
+        for (int x = 0; x < cols; ++x) {
+            cells[y][x] = Cell{
+                CellType::Empty,
+                glm::vec2(x * cellSize, y * cellSize)
+            };
         }
     }
 }
 
-const Grid::Cell& Grid::at(int x, int y) const {
-    return grid_[y][x];
+
+Cell& Grid::GetCell(int x, int y) {
+    if (x < 0 || x >= width || y < 0 || y >= height)
+        throw std::out_of_range("GetCell: Index out of range");
+    return cells[y][x];
 }
 
-void Grid::addEntity(entt::entity e, int x, int y) {
-    grid_[y][x].entities.push_back(e);
+std::vector<Cell> Grid::getAllCells() const {
+    std::vector<Cell> allCells;
+    for (const auto& row : cells) {
+        for (const auto& cell : row) {
+            allCells.push_back(cell);
+            //std::cout << (cell.type == CellType::Path ? "Path" : "Empty") << std::endl;
+
+
+        }
+    }
+    return allCells;
 }
 
-void Grid::removeEntity(entt::entity e, int x, int y) {
-    auto& entities = grid_[y][x].entities;
-    entities.erase(std::remove(entities.begin(), entities.end(), e), entities.end());
+const Cell& Grid::GetCell(int x, int y) const {
+    if (x < 0 || x >= width || y < 0 || y >= height)
+        throw std::out_of_range("GetCell: Index out of range");
+    return cells[y][x];
 }
 
-int Grid::width() const {
-    return gridWidth_;
+std::vector<Cell>& Grid::GetNeighbors(int x, int y) {
+    static std::vector<Cell> neighbors;
+    neighbors.clear();
+
+    const int dx[] = { -1, 1, 0, 0 };
+    const int dy[] = { 0, 0, -1, 1 };
+
+    for (int i = 0; i < 4; ++i) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+
+        if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+            neighbors.push_back(cells[ny][nx]);
+        }
+    }
+
+    return neighbors;
 }
 
-int Grid::height() const {
-    return gridHeight_;
+void Grid::SetPath(const std::vector<glm::ivec2>& pathCells) {
+    int cols = width / cellSize;
+    int rows = height / cellSize;
+
+    for (const auto& coord : pathCells) {
+        if (coord.x >= 0 && coord.x < cols && coord.y >= 0 && coord.y < rows) {
+            cells[coord.y][coord.x].type = CellType::Path;
+        }
+    }
 }
+
