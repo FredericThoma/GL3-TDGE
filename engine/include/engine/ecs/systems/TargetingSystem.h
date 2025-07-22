@@ -1,11 +1,14 @@
 #include "engine/ecs/Components.h"
 
-class ShootingSystem {
+class TargetingSystem {
 public:
-    explicit ShootingSystem(entt::registry& registry) : registry(registry) {};
-    ~ShootingSystem();
+    explicit TargetingSystem(entt::registry& registry) : registry(registry) {};
+    ~TargetingSystem() = default;
     void update();
-    getTarget(entt::entity entity);
+    entt::entity getNearestEnemy(entt::entity entity) const;
+    entt::entity getLowestEnemy() const;
+    entt::entity getFurthestEnemy() const;
+
 
 private:
     entt::registry& registry;

@@ -1,5 +1,4 @@
 #pragma once
-#include <optional>
 #include <unordered_map>
 #include <vector>
 #include "Grid.h"
@@ -8,12 +7,11 @@
 class Path {
 public:
     Path();
-    Path(const std::vector<glm::vec3>& points, Grid& grid);
-
-    std::vector<glm::vec3> getPoints() const;
-    std::vector<Cell*> getCells() const;
-    const Cell* Path::getNextCell(const Cell& current) const;
-    glm::vec3 Path::getTargetPosition(const glm::vec3& currentPosition);
+    Path(const std::vector<glm::vec2>& cellIndices, Grid& grid);
+    int getPathSegmentCount() const;
+    [[nodiscard]] std::vector<glm::vec3> getPoints() const;
+    const Cell* getCellByPathSegmentIndex(int segmentIndex) const;
+    [[nodiscard]] std::vector<Cell*> getCells() const;
     void buildCellIndices();
 
 private:
@@ -21,4 +19,5 @@ private:
     std::vector<Cell*> cells;
     std::unordered_map<int, int> cellIDToIndex;
     Grid* grid;
+    std::list<Cell*> cellListOrdered;
 };

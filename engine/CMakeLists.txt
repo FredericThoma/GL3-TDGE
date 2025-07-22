@@ -12,37 +12,6 @@ add_library(${ENGINE_NAME}
         ${HEADER_LIST}
         ${PRIVATE_HEADER_LIST}
         ${SOURCE_LIST}
-        include/engine/rendering/Texture.h
-        src/rendering/Texture.cpp
-        include/engine/ecs/Scene.h
-        include/engine/ecs/components/Transform.h
-        include/engine/ecs/components/Sprite.h
-        include/engine/ecs/systems/RenderSystem.h
-        src/ecs/systems/RenderSystem.cpp
-        include/engine/ecs/components/Tags.h
-        include/engine/waves/WaveParser.h
-        src/waves/WaveParser.cpp
-        src/ecs/systems/WaveSystem.cpp
-        include/engine/ecs/systems/WaveSystem.h
-        include/engine/ecs/components/WaveState.h
-        src/core/Grid.cpp
-        include/engine/core/Grid.h
-        src/core/Cell.cpp
-        include/engine/ecs/systems/MovementSystem.cpp
-        include/engine/ecs/systems/MovementSystem.h
-        include/engine/ecs/components/GridPosition.h
-        include/engine/core/PathData.h
-        include/engine/core/Cell.h
-        src/core/EnemyFactory.cpp
-        include/engine/core/EnemyFactory.h
-        include/engine/ecs/Components.h
-        include/engine/ecs/components/PathFollow.h
-        include/engine/ecs/components/SpawnRequest.h
-        include/engine/ecs/systems/SpawnSystem.cpp
-        include/engine/ecs/systems/SpawnSystem.h
-        include/engine/waves/WaveInfo.h
-        include/engine/core/Path.cpp
-        include/engine/core/Path.h
 )
 
 target_compile_features(${ENGINE_NAME} PRIVATE cxx_std_17)

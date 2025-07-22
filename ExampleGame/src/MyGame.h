@@ -26,7 +26,8 @@ public:
     MyGame()
         : Game(1280, 1280, "My 2D Game"),
           scene(),
-          renderSystem(renderer){}
+          renderSystem(renderer),
+    grid(WIDTH, HEIGHT, CELLSIZE){}
 
     void start() override {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -48,16 +49,23 @@ public:
         waveSystem->setWaves(all_waves);
         waveSystem->resetWaves();
 
-        std::vector<glm::ivec2> pathData;
+
+        std::vector<glm::vec2> PathCellIndices;
         for (int x = 0; x <= 18; ++x) {
-            pathData.emplace_back(x, 1); // move right
+            PathCellIndices.emplace_back(glm::vec2(x, 1.0f));
         }
         for (int y = 1; y <= 19; ++y) {
-            pathData.emplace_back(18, y); // move up
+            PathCellIndices.emplace_back(glm::vec2(18, y));
         }
 
-        grid = Grid(WIDTH, HEIGHT, CELLSIZE);
-        grid.SetPath(pathData);
+        //grid = Grid(WIDTH, HEIGHT, CELLSIZE);
+        grid.MarkPathCells(PathCellIndices);
+
+        entt::entity pathEntity = registry.create();
+        path = std::make_shared<Path>(PathCellIndices, grid);
+        registry.emplace<std::shared_ptr<Path>>(pathEntity, path);
+
+
         entt::entity entity = registry.create();
         registry.emplace<gl3::ecs::components::Transform>(
             entity,
@@ -77,10 +85,10 @@ public:
     }
 
     void update(GLFWwindow* window) override {
-        std::cout << "update" << std::endl;
         waveSystem->update();
         spawnSystem->update();
         movementSystem->update();
+
     }
 
     void draw() override {
@@ -100,4 +108,5 @@ private:
     std::unique_ptr<WaveSystem> waveSystem;
     std::unique_ptr<SpawnSystem> spawnSystem;
     std::unique_ptr<MovementSystem> movementSystem;
+    std::shared_ptr<Path> path;
 };

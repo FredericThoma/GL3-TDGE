@@ -1,8 +1,11 @@
 #pragma once
+
 #include "engine/waves/WaveInfo.h"
 
-
-struct SpawnRequest {
-    std::string tag;
-    SpawnInfo spawnInfo;
-};
+namespace gl3::ecs::components
+{
+    struct SpawnRequest {
+        std::string tag;
+        SpawnInfo spawnInfo;
+    };
+}

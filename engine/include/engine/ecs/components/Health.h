@@ -1,4 +1,8 @@
 #pragma once
-struct Health {
-    float health;
-};
+
+namespace gl3::ecs::components
+{
+    struct Health {
+        float health;
+    };
+}
