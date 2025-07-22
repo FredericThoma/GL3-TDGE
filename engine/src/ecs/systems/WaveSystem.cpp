@@ -4,13 +4,12 @@
 
 #include "engine/ecs/components/SpawnRequest.h"
 
+constexpr float DELTATIME = 1 / 60.0f;
+
 
 WaveSystem::~WaveSystem()
     {
-        std::cout << "WaveSystem: Destructor called." << std::endl;
-        // Clean up any dynamically allocated resources if you had them.
-        // Since m_loadedWaveTemplateSets is a std::vector, it will
-        // automatically clean up its contents.
+
     }
 
 void WaveSystem::setWaves(const std::vector<WaveInfo>& waves) {
@@ -51,15 +50,22 @@ void WaveSystem::nextWave()
 
 void WaveSystem::update()
 {
+    if (currentWave->current_time >= currentWave->duration)
+    {
+        nextWave();
+    }
     for (auto& spawnInfo : currentWave->spawns)
     {
-        if (!spawnInfo.spawned && waveTimer >= spawnInfo.delay){
+        if (!spawnInfo.spawned && currentWave->current_time >= spawnInfo.delay){
             spawnInfo.spawned = true;
             auto spawn_entity = registry.create();
             std::string tag = "enemy";
-            registry.emplace<SpawnRequest>(spawn_entity, SpawnRequest{tag, spawnInfo});
+            registry.emplace<gl3::ecs::components::SpawnRequest>(spawn_entity, gl3::ecs::components::SpawnRequest{tag, spawnInfo});
         }
     }
+
+    currentWave->current_time += DELTATIME;
+
 }
 
 std::vector<WaveInfo> WaveSystem::allWavesFromJson(const std::filesystem::path& file_path)

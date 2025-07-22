@@ -21,7 +21,6 @@ namespace gl3::ecs::systems {
 
         for (auto entity : view) {
             const auto& transform = view.get<components::Transform>(entity);
-            std::cout << transform.position.x << " " << transform.position.y << std::endl;
             const auto& sprite = view.get<components::Sprite>(entity);
 
             glm::mat4 model = transform.getTransformMatrix();
@@ -30,14 +29,14 @@ namespace gl3::ecs::systems {
         }
     }
 
-    void RenderSystem::renderGrid(Grid grid)
+    void RenderSystem::renderGrid(const Grid& grid)
     {
         auto allCells = grid.getAllCells();
         glm::vec4 color = glm::vec4(1.0f);
         for (auto cell : allCells)
         {
 
-            switch (cell.type)
+            switch (cell->type)
             {
                 case CellType::Path:
                 color = glm::vec4(0.788f, 0.537f, 0.071f, 1.0f);
@@ -47,7 +46,7 @@ namespace gl3::ecs::systems {
 break;
             }
             glm::mat4 viewProj = projectionMatrix * viewMatrix;
-            glm::vec3 pos3D = cell.worldPosition;
+            glm::vec3 pos3D = cell->worldPosition;
             glm::mat4 model = glm::translate(glm::mat4(1.0f), pos3D);
             model = glm::scale(model, glm::vec3(grid.GetCellSize(), grid.GetCellSize(), 1.0f));
             glm::mat4 mvp = viewProj * model;
