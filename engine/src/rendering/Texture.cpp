@@ -31,19 +31,17 @@ namespace gl3 {
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        // PIXEL ART SETTINGS:
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
         stbi_image_free(data);
     }
 
-    Texture::~Texture() {
-        glDeleteTextures(1, &textureID);
-    }
+
 
     void Texture::bind(unsigned int slot) const {
         glActiveTexture(GL_TEXTURE0 + slot);
@@ -57,4 +55,42 @@ namespace gl3 {
     unsigned int Texture::getID() const {
         return textureID;
     }
+
+    gl3::Texture::Texture(Texture&& other) noexcept
+    : textureID(other.textureID),
+      width(other.width),
+      height(other.height),
+      channels(other.channels)
+    {
+        other.textureID = 0;
+        other.width = 0;
+        other.height = 0;
+        other.channels = 0;
+    }
+
+    gl3::Texture& gl3::Texture::operator=(Texture&& other) noexcept
+    {
+        if (this != &other) {
+            if (textureID != 0)
+                glDeleteTextures(1, &textureID);
+
+            textureID = other.textureID;
+            width = other.width;
+            height = other.height;
+            channels = other.channels;
+
+            other.textureID = 0;
+            other.width = 0;
+            other.height = 0;
+            other.channels = 0;
+        }
+        return *this;
+    }
+
+    gl3::Texture::~Texture()
+    {
+        if (textureID != 0)
+            glDeleteTextures(1, &textureID);
+    }
+
 }

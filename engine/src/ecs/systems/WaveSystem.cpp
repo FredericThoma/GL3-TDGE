@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "engine/ecs/components/SpawnRequest.h"
+#include "engine/ecs/components/Tags.h"
 
 constexpr float DELTATIME = 1 / 60.0f;
 
@@ -60,6 +61,7 @@ void WaveSystem::update()
             spawnInfo.spawned = true;
             auto spawn_entity = registry.create();
             std::string tag = "enemy";
+            registry.emplace<gl3::ecs::components::EnemyTag>(spawn_entity);
             registry.emplace<gl3::ecs::components::SpawnRequest>(spawn_entity, gl3::ecs::components::SpawnRequest{tag, spawnInfo});
         }
     }

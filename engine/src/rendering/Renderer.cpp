@@ -58,10 +58,11 @@ namespace gl3::renderer {
         glBindVertexArray(0);
     }
 
-    void Renderer::drawTexturedQuad(const glm::mat4& mvp, gl3::Texture* texture, const glm::vec4& color) {
+    void Renderer::drawTexturedQuad(const glm::mat4& mvp, const Texture* texture, const glm::vec4& tint)
+ {
         shader.use();
         shader.setMatrix("u_MVP", mvp);
-        shader.setVector("u_Color", color);
+        shader.setVector("u_Color", tint);
 
         glActiveTexture(GL_TEXTURE0);
         texture->bind(0);

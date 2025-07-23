@@ -11,7 +11,7 @@ namespace gl3::renderer {
         ~Renderer();
 
         void drawQuad(const glm::mat4& mvp, const glm::vec4& color);
-        void drawTexturedQuad(const glm::mat4& mvp, gl3::Texture* texture, const glm::vec4& tint);
+        void drawTexturedQuad(const glm::mat4& mvp, const Texture* texture, const glm::vec4& tint);
 
     private:
         unsigned int vao, vbo, ebo;

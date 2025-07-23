@@ -8,7 +8,8 @@ public:
     explicit SpawnSystem(entt::registry& reg);
 
     void update();
-    void spawnEnemy(glm::vec3 position, float health);
+    void spawnBullet(entt::entity bulletSpawnRequest);
+    void spawnEnemy(entt::entity enemySpawnRequest);
 
 private:
     entt::registry& registry;

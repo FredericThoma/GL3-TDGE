@@ -11,7 +11,9 @@
 #include "engine/ecs/components/Sprite.h"
 #include "engine/core/Grid.h"
 #include "engine/ecs/systems/MovementSystem.h"
+#include "engine/ecs/systems/ShootingSystem.h"
 #include "engine/ecs/systems/SpawnSystem.h"
+#include "engine/ecs/systems/TargetingSystem.h"
 #include "engine/ecs/systems/WaveSystem.h"
 
 constexpr int WIDTH = 1280;
@@ -42,9 +44,12 @@ public:
         glm::mat4 view = glm::mat4(1.0f);
         renderSystem.SetView(view);
         renderSystem.SetProjection(projection);
+        renderSystem.start();
         spawnSystem = std::make_unique<SpawnSystem>(registry);
         waveSystem = std::make_unique<WaveSystem>(registry);
         movementSystem = std::make_unique<MovementSystem>(registry);
+        targetingSystem = std::make_unique<TargetingSystem>(registry);
+        shootingSystem = std::make_unique<ShootingSystem>(registry);
         auto all_waves = waveSystem->allWavesFromJson(gl3::resolveAssetPath("wave_definition_test.json"));
         waveSystem->setWaves(all_waves);
         waveSystem->resetWaves();
@@ -58,7 +63,6 @@ public:
             PathCellIndices.emplace_back(glm::vec2(18, y));
         }
 
-        //grid = Grid(WIDTH, HEIGHT, CELLSIZE);
         grid.MarkPathCells(PathCellIndices);
 
         entt::entity pathEntity = registry.create();
@@ -71,15 +75,15 @@ public:
             entity,
             glm::vec3(500.0, 500.0f, 1.0f),
             0.0f,
-            glm::vec2(100.0f, 100.0f)
+            glm::vec2(300.0f, 300.0f)
         );
-
-
+        registry.emplace<gl3::ecs::components::Targeting>(entity);
+        registry.emplace<gl3::ecs::components::Shooting>(entity, 10.0f, 1000, 3.0f);
 
         glm::vec4 color = {1.0f, 1.0f, 0.0f, 1.0f};
+        auto tex = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/TurmB.png"));
+        registry.emplace<gl3::ecs::components::Sprite>(entity, tex, glm::vec4(1.0f));
 
-        auto texture = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/turret_placeholder.png"));
-        registry.emplace<gl3::ecs::components::Sprite>(entity, texture, color);
 
 
     }
@@ -88,7 +92,8 @@ public:
         waveSystem->update();
         spawnSystem->update();
         movementSystem->update();
-
+        targetingSystem->update();
+        shootingSystem->update();
     }
 
     void draw() override {
@@ -108,5 +113,7 @@ private:
     std::unique_ptr<WaveSystem> waveSystem;
     std::unique_ptr<SpawnSystem> spawnSystem;
     std::unique_ptr<MovementSystem> movementSystem;
+    std::unique_ptr<ShootingSystem> shootingSystem;
+    std::unique_ptr<TargetingSystem> targetingSystem;
     std::shared_ptr<Path> path;
 };

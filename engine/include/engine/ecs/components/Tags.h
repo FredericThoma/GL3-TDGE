@@ -5,4 +5,5 @@ namespace gl3::ecs::components
     struct TurretTag{};
     struct BaseTag{};
     struct PathTag{};
+    struct BulletTag{};
 }

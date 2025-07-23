@@ -9,15 +9,12 @@ namespace gl3::ecs::systems {
 
     class RenderSystem {
     public:
-        glm::mat4 projectionMatrix;
-        glm::mat4 viewMatrix;
-
-
         explicit RenderSystem(gl3::renderer::Renderer& renderer,
                       const glm::mat4& projection = glm::mat4(1.0f),
                       const glm::mat4& view = glm::mat4(1.0f));
 
         void renderOverlappingTiles(float tileSizeX, float tileSizeY);
+        void start();
         void render(entt::registry& registry);
         void renderChessboard(int boardWidth, int boardHeight, float tileSizeX, float tileSizeY);
         void renderGrid(const Grid& grid);
@@ -46,6 +43,10 @@ namespace gl3::ecs::systems {
 
     private:
         gl3::renderer::Renderer& renderer;
+        Texture pathTexture;
+        Texture wieseTexture;
+        glm::mat4 projectionMatrix;
+        glm::mat4 viewMatrix;
     };
 
 }

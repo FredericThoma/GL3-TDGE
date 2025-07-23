@@ -14,12 +14,21 @@ void TargetingSystem::update() {
 
         case gl3::ecs::components::TargetingMode::Nearest:
             enemy = getNearestEnemy(entity);
+            if (enemy == entt::null)
+            {
+                break;
+            }
+
             targeting.targetPosition = registry.get<gl3::ecs::components::Transform>(enemy).position;
             targeting.target = enemy;
             break;
 
         default:
             enemy = getNearestEnemy(entity);
+            if (enemy == entt::null)
+            {
+                break;
+            }
             targeting.targetPosition = registry.get<gl3::ecs::components::Transform>(enemy).position;
             targeting.target = enemy;
             break;
@@ -28,6 +37,7 @@ void TargetingSystem::update() {
 }
 entt::entity TargetingSystem::getNearestEnemy(entt::entity entity) const
 {
+
     auto& transform = registry.get<gl3::ecs::components::Transform>(entity);
     glm::vec3 position = transform.position;
     float bestDistance = std::numeric_limits<float>::max();
