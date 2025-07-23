@@ -88,7 +88,11 @@ public:
         elements.push_back(std::move(uie));
 
 
-        userInterface = std::make_unique<UserInterface>(std::move(elements));
+
+
+
+
+
         spawnSystem = std::make_unique<SpawnSystem>(registry);
         waveSystem = std::make_unique<WaveSystem>(registry);
         movementSystem = std::make_unique<MovementSystem>(registry);
@@ -98,6 +102,20 @@ public:
         auto all_waves = waveSystem->allWavesFromJson(gl3::resolveAssetPath("wave_definition_test.json"));
         waveSystem->setWaves(all_waves);
         waveSystem->resetWaves();
+
+
+        auto waveProgressDisplay = UIElement();
+        UIText waveProgressText;
+        waveProgressText.text = std::to_string(waveSystem->getCurrentWaveIndex()) + " / " +
+                                std::to_string(waveSystem->getNumberWavesTotal());
+
+        waveProgressDisplay.title = "Wave Progress";
+        waveProgressDisplay.texts.push_back(std::move(waveProgressText));
+
+        elements.push_back(std::move(waveProgressDisplay));
+
+        userInterface = std::make_unique<UserInterface>(std::move(elements));
+
 
 
         std::vector<glm::vec2> PathCellIndices;

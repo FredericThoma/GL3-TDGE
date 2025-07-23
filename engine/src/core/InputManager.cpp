@@ -1,6 +1,8 @@
 #include "engine/core/InputManager.h"
 #include <GLFW/glfw3.h>
 
+#include "imgui_impl_glfw.h"
+
 void InputManager::Update() {
     keysPressed.clear();
     keysReleased.clear();
@@ -63,6 +65,7 @@ void InputManager::KeyCallback(GLFWwindow* window, int key, int scancode, int ac
     if (input && key >= 0) {
         input->SetKeyState(key, action);
     }
+    ImGui_ImplGlfw_KeyCallback(window, key, scancode, action, mods);
 }
 
 void InputManager::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
@@ -70,6 +73,7 @@ void InputManager::MouseButtonCallback(GLFWwindow* window, int button, int actio
     if (input) {
         input->SetMouseButtonState(button, action);
     }
+    ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
 }
 
 void InputManager::CursorPosCallback(GLFWwindow* window, double xpos, double ypos) {
@@ -77,6 +81,7 @@ void InputManager::CursorPosCallback(GLFWwindow* window, double xpos, double ypo
     if (input) {
         input->SetMousePosition(xpos, ypos);
     }
+    ImGui_ImplGlfw_CursorPosCallback(window, xpos, ypos);
 }
 
 void InputManager::RegisterCallbacks(GLFWwindow* window, InputManager* inputManager) {

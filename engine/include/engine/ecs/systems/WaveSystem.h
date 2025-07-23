@@ -17,6 +17,8 @@ public:
     void setWaves(std::vector<WaveInfo>&& waves);
     void resetWaves();
     static std::vector<WaveInfo> allWavesFromJson(const std::filesystem::path& file_path);
+    int getCurrentWaveIndex() const {return currentWave->wave_id;};
+    int getNumberWavesTotal() const {return allWaves.size();};
 
     void nextWave();
     void update();
