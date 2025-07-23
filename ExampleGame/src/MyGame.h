@@ -23,6 +23,7 @@
 #include "engine/core/InputManager.h"
 #include "engine/ecs/components/AudioClip.h"
 #include "engine/ecs/systems/AudioSystem.h"
+#include "engine/ecs/systems/CollisionSystem.h"
 
 constexpr int WIDTH = 1280;
 constexpr int HEIGHT = 1280;
@@ -98,6 +99,7 @@ public:
         movementSystem = std::make_unique<MovementSystem>(registry);
         targetingSystem = std::make_unique<TargetingSystem>(registry);
         audioSystem = std::make_unique<AudioSystem>(registry);
+        collisionSystem = std::make_unique<gl3::ecs::systems::CollisionSystem>();
         shootingSystem = std::make_unique<ShootingSystem>(registry);
         auto all_waves = waveSystem->allWavesFromJson(gl3::resolveAssetPath("wave_definition_test.json"));
         waveSystem->setWaves(all_waves);
@@ -163,6 +165,7 @@ public:
         targetingSystem->update();
         shootingSystem->update();
         audioSystem->update();
+        collisionSystem->update(scene.getRegistry());
     }
 
     void handleInputs(GLFWwindow* window)
@@ -198,6 +201,7 @@ private:
     std::unique_ptr<AudioSystem> audioSystem;
     std::unique_ptr<TargetingSystem> targetingSystem;
     std::unique_ptr<UserInterface> userInterface;
+    std::unique_ptr<gl3::ecs::systems::CollisionSystem> collisionSystem;
     std::shared_ptr<Path> path;
     InputManager inputManager;
 };
