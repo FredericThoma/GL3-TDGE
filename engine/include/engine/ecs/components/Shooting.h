@@ -4,7 +4,7 @@ namespace gl3::ecs::components
 {
     struct Shooting {
         float damage;
-        float bulletSpeed = 100.0f;
+        float bulletSpeed = 50.0f;
         float range;
         float cooldown;
         float countdownUntilNextShot;

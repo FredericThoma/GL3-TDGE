@@ -56,19 +56,32 @@ public:
         renderSystem.start();
         renderer.setWindow(getWindow());
 
-        auto uii = UIImage();
-        uii.texture = gl3::Texture(gl3::resolveAssetPath("textures/Turret.png"), false);
-        auto uit = UIText();
-        uit.text = "UITEXT ELEMENT";
+        auto uiib = std::make_shared<UIImageButton>();
+        uiib->id = "1";
+        uiib->texture=gl3::Texture(gl3::resolveAssetPath("textures/TurmB.png"), false);
+        uiib->onClick = [uiib]() mutable {
+            uiib->selected = !uiib->selected;
+            uiib->bg_col = uiib->selected ? uiib->bg_col_sel : uiib->bg_col_unsel;
+        };
+
+        auto uiib2 = std::make_shared<UIImageButton>();
+        uiib2->id = "2";
+        uiib2->texture=gl3::Texture(gl3::resolveAssetPath("textures/Turret.png"), false);
+        uiib2->onClick = [uiib2]() mutable {
+            uiib2->selected = !uiib2->selected;
+            uiib2->bg_col = uiib2->selected ? uiib2->bg_col_sel : uiib2->bg_col_unsel;
+        };
 
         std::vector<UIElement> elements;
         auto uie = UIElement();
-        uie.images.push_back(std::move(uii));
+        uie.imageButtons.push_back(uiib);
+        uie.imageButtons.push_back(uiib2);
+
         auto uii2 = UIImage();
 
         uii2.texture = gl3::Texture(gl3::resolveAssetPath("textures/TurmB.png"), false);
-        uie.images.push_back(std::move(uii2));
-        uie.texts.push_back(std::move(uit));
+        //uie.images.push_back(std::move(uii2));
+
         uie.title = "test";
         elements.push_back(std::move(uie));
         userInterface = std::make_unique<UserInterface>(std::move(elements));

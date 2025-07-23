@@ -1,6 +1,8 @@
 #include "Texture.h"
 #include <string>
 #include <vector>
+#include <functional>
+#include <imgui.h>
 
 struct UIImage
 {
@@ -14,6 +16,30 @@ struct UIImage
     UIImage& operator=(const UIImage&) = default;
     UIImage& operator=(UIImage&&) noexcept = default;
 };
+
+struct UIImageButton
+{
+    std::string id;
+    gl3::Texture texture;
+    std::function<void()> onClick;
+    bool selected = false;
+    ImVec4 bg_col = ImVec4(0, 0, 0, 0);
+    ImVec4 bg_col_unsel = ImVec4(0, 0, 0, 0);
+    ImVec4 bg_col_sel = ImVec4(0.5, 0.5, 0.6, 1);
+    ImVec4 tint_col = ImVec4(1, 1, 1, 1);
+    ImVec2 uv0 = ImVec2(0.0f, 0.0f);
+    ImVec2 uv1 = ImVec2(1.0f, 1.0f);
+    ImVec2 scale = ImVec2(100.0f, 100.0f);
+
+    UIImageButton() = default;
+    ~UIImageButton() = default;
+
+    UIImageButton(const UIImageButton&) = default;
+    UIImageButton(UIImageButton&&) noexcept = default;
+    UIImageButton& operator=(const UIImageButton&) = default;
+    UIImageButton& operator=(UIImageButton&&) noexcept = default;
+};
+
 
 struct UIText
 {
@@ -34,6 +60,7 @@ struct UIElement
     std::string title;
     std::vector<UIText> texts;
     std::vector<UIImage> images;
+    std::vector<std::shared_ptr<UIImageButton>> imageButtons;
 
     UIElement() = default;
     UIElement(const std::string& t) : title(t) {}

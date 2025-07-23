@@ -42,7 +42,6 @@ namespace gl3::ecs::systems {
     }
 
 
-
     void RenderSystem::renderGrid(const Grid& grid)
     {
         glm::mat4 viewProj = projectionMatrix * viewMatrix;

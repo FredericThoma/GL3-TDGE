@@ -109,21 +109,40 @@ namespace gl3::renderer {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+        ImVec2 uv0 = ImVec2(0.0f, 0.0f);
+        ImVec2 uv1 = ImVec2(1.0f, 1.0f);
+
+        // Optional padding & tint
+        int frame_padding = -1; // -1 uses default padding
+        ImVec4 bg_col = ImVec4(0, 0, 0, 0);      // transparent background
+        ImVec4 tint_col = ImVec4(1, 1, 1, 1);    // full color
 
         for (auto &uie : userInterface.elements)
         {
             ImGui::Begin(uie.title.c_str());
+
             for (auto &uii : uie.images)
             {
                 auto texID = uii.texture.getID();
-                ImGui::Image((void*)static_cast<intptr_t>(texID), ImVec2(100, 100));
-
+                if (ImGui::ImageButton("test", (void*)static_cast<intptr_t>(texID), ImVec2(100, 100),uv0, uv1, bg_col, tint_col))
+                {
+                    // Handle click
+                    ImGui::Text("ImageButton clicked!");
+                }
             }
             for (auto &uit : uie.texts)
             {
 
                 ImGui::Text("%s", uit.text.c_str());
 
+            }
+            for (auto uiib: uie.imageButtons)
+            {
+                ImGui::SameLine();
+                if (ImGui::ImageButton(uiib->id.c_str(), (void*)static_cast<intptr_t>(uiib->texture.getID()), uiib->scale,uiib->uv0, uiib->uv1, uiib->bg_col, uiib->tint_col))
+                {
+                    uiib->onClick();
+                }
             }
             ImGui::End();
         }

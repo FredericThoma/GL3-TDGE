@@ -19,6 +19,8 @@ add_library(${ENGINE_NAME}
         ${SOURCE_LIST}
         ${IMGUI_SOURCES}
         include/engine/rendering/UserInterface.h
+        include/engine/core/GameState.cpp
+        include/engine/core/GameState.h
 )
 
 target_compile_features(${ENGINE_NAME} PRIVATE cxx_std_17)
