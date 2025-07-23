@@ -16,6 +16,12 @@ namespace gl3::ecs::systems
         explicit CollisionSystem(CollisionCallback callback = nullptr)
             : onCollision(callback) {}
 
+        void setCallback(CollisionCallback callback)
+        {
+            onCollision = std::move(callback);
+        }
+
+
         void update(entt::registry& registry)
         {
             auto view = registry.view<components::Transform>();
@@ -71,7 +77,9 @@ namespace gl3::ecs::systems
 
         void handleCollision(entt::entity a, entt::entity b)
         {
+
             if (onCollision) {
+                std::cout << "handleCollision called\n" <<std::endl;
                 onCollision(a, b);
             }
         }
@@ -80,7 +88,6 @@ namespace gl3::ecs::systems
                                const glm::vec2& posB, float radiusB)
         {
             float distanceSq = glm::dot(posA - posB, posA - posB);
-
             float radiiSum = radiusA + radiusB;
             return distanceSq <= radiiSum * radiiSum;
         }

@@ -20,10 +20,13 @@
 #include "imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 
+#include "EnemyProjectileCollision.h"
 #include "engine/core/InputManager.h"
 #include "engine/ecs/components/AudioClip.h"
+#include "engine/ecs/components/Projectile.h"
 #include "engine/ecs/systems/AudioSystem.h"
 #include "engine/ecs/systems/CollisionSystem.h"
+#include "engine/ecs/systems/DestructionSystem.h"
 
 constexpr int WIDTH = 1280;
 constexpr int HEIGHT = 1280;
@@ -88,10 +91,10 @@ public:
         uie.title = "test";
         elements.push_back(std::move(uie));
 
-
-
-
-
+        collisionSystem = std::make_unique<gl3::ecs::systems::CollisionSystem>();
+        collisionSystem->setCallback([&registry](entt::entity a, entt::entity b) {
+            handleEnemyProjectileCollosion(registry, a, b);
+        });
 
 
         spawnSystem = std::make_unique<SpawnSystem>(registry);
@@ -99,8 +102,8 @@ public:
         movementSystem = std::make_unique<MovementSystem>(registry);
         targetingSystem = std::make_unique<TargetingSystem>(registry);
         audioSystem = std::make_unique<AudioSystem>(registry);
-        collisionSystem = std::make_unique<gl3::ecs::systems::CollisionSystem>();
         shootingSystem = std::make_unique<ShootingSystem>(registry);
+        destructionSystem = std::make_unique<DestructionSystem>(registry);
         auto all_waves = waveSystem->allWavesFromJson(gl3::resolveAssetPath("wave_definition_test.json"));
         waveSystem->setWaves(all_waves);
         waveSystem->resetWaves();
@@ -142,7 +145,7 @@ public:
             glm::vec2(300.0f, 300.0f)
         );
         registry.emplace<gl3::ecs::components::Targeting>(entity);
-        registry.emplace<gl3::ecs::components::Shooting>(entity, 10.0f, 1000, 3.0f);
+        registry.emplace<gl3::ecs::components::Shooting>(entity, 10.0f, 1000, 1.0f);
         registry.emplace<gl3::ecs::components::AudioClip>(
     entity,
     "audio/electronic-wave.mp3"
@@ -157,6 +160,7 @@ public:
     }
 
     void update(GLFWwindow* window) override {
+        destructionSystem->update();
         inputManager.Update();
         handleInputs(window);
         waveSystem->update();
@@ -201,6 +205,8 @@ private:
     std::unique_ptr<AudioSystem> audioSystem;
     std::unique_ptr<TargetingSystem> targetingSystem;
     std::unique_ptr<UserInterface> userInterface;
+
+    std::unique_ptr<DestructionSystem> destructionSystem;
     std::unique_ptr<gl3::ecs::systems::CollisionSystem> collisionSystem;
     std::shared_ptr<Path> path;
     InputManager inputManager;
