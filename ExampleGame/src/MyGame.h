@@ -15,6 +15,10 @@
 #include "engine/ecs/systems/SpawnSystem.h"
 #include "engine/ecs/systems/TargetingSystem.h"
 #include "engine/ecs/systems/WaveSystem.h"
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include <GLFW/glfw3.h>
 
 constexpr int WIDTH = 1280;
 constexpr int HEIGHT = 1280;
@@ -36,7 +40,12 @@ public:
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
         entt::registry& registry = scene.getRegistry();
+
+
+
 
         int width, height;
         glfwGetWindowSize(getWindow(), &width, &height);
