@@ -20,6 +20,7 @@ namespace gl3::ecs::systems {
     {
         pathTexture = Texture(resolveAssetPath("textures/PathTexture.png"));
         wieseTexture = Texture(resolveAssetPath("textures/Grass.png"));
+        mouseTexture = Texture(resolveAssetPath("textures/Bullet.png"));
     }
 
 
@@ -36,7 +37,11 @@ namespace gl3::ecs::systems {
             glm::mat4 mvp = viewProj * model;
             renderer.drawTexturedQuad(mvp, sprite.texture.get(), sprite.color);
         }
+
+        //renderer.drawMouse(mouseTexture);
     }
+
+
 
     void RenderSystem::renderGrid(const Grid& grid)
     {
@@ -54,7 +59,7 @@ namespace gl3::ecs::systems {
 
             if (cell->type == CellType::Path)
             {
-                glm::vec3 scaleFactor(1.05f, 1.05f, 1.0f);
+                glm::vec3 scaleFactor(1.0f, 1.0f, 1.0f);
 
                 // Apply scaling and slight Z-offset
                 glm::mat4 modelScaled = glm::scale(model, scaleFactor);

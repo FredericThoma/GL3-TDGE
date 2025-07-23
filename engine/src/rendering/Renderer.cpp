@@ -1,18 +1,22 @@
-#include "../../include/engine/rendering/Renderer.h"
 
-#include <iostream>
-#include <glad/glad.h>
-#include "../../include/engine/rendering/Assets.h"
-#include "../../include/engine/rendering/Texture.h"
+#include "engine/rendering/Renderer.h"
+
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include "engine/rendering/Assets.h"
+#include "GLFW/glfw3.h"
+#include "glm/ext/matrix_clip_space.hpp"
+#include "glm/ext/matrix_transform.hpp"
+
 
 namespace gl3::renderer {
 
     Renderer::Renderer()
-    : shader(
-    resolveAssetPath("shaders/vertexShader.vert"),
-    resolveAssetPath("shaders/fragmentShader.frag")
-    ),
-          texture(resolveAssetPath("textures/turret_placeholder.png"), 0)
+    :shader(
+         resolveAssetPath("shaders/vertexShader.vert"),
+         resolveAssetPath("shaders/fragmentShader.frag")
+     ), texture(resolveAssetPath("textures/turret_placeholder.png"), 0)
     {
         float vertices[] = {
             0.0f, 0.0f, 0.0f,  0.0f, 0.0f,
@@ -45,7 +49,7 @@ namespace gl3::renderer {
         glBindVertexArray(0);
     }
 
-    void Renderer::drawQuad(const glm::mat4& mvp, const glm::vec4& color) {
+    void Renderer::drawQuad(const glm::mat4& mvp, const glm::vec4& color) const {
         shader.use();
         shader.setMatrix("u_MVP", mvp);
         shader.setVector("u_Color", color);
@@ -58,7 +62,7 @@ namespace gl3::renderer {
         glBindVertexArray(0);
     }
 
-    void Renderer::drawTexturedQuad(const glm::mat4& mvp, const Texture* texture, const glm::vec4& tint)
+    void Renderer::drawTexturedQuad(const glm::mat4& mvp, const Texture* texture, const glm::vec4& tint) const
  {
         shader.use();
         shader.setMatrix("u_MVP", mvp);
@@ -75,10 +79,69 @@ namespace gl3::renderer {
     }
 
 
+    void Renderer::drawMouse(Texture& texture) const
+    {
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
+
+        int winWidth, winHeight;
+        glfwGetWindowSize(window, &winWidth, &winHeight);
+
+        float x = static_cast<float>(xpos);
+        float y = static_cast<float>(winHeight - ypos);
+
+        float quadWidth = 32.0f;
+        float quadHeight = 32.0f;
+
+
+        glm::mat4 proj = glm::ortho(0.0f, static_cast<float>(winWidth), 0.0f, static_cast<float>(winHeight));
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, 1.0f));
+        model = glm::scale(model, glm::vec3(quadWidth, quadHeight, 1.0f));
+
+        glm::mat4 mvp = proj * model;
+
+        drawTexturedQuad(mvp, &texture, glm::vec4(1.0f));
+    }
+
+    void Renderer::drawUI(const UserInterface& userInterface) const
+    {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+
+        for (auto &uie : userInterface.elements)
+        {
+            ImGui::Begin(uie.title.c_str());
+            for (auto &uii : uie.images)
+            {
+                auto texID = uii.texture.getID();
+                ImGui::Image((void*)static_cast<intptr_t>(texID), ImVec2(100, 100));
+
+            }
+            for (auto &uit : uie.texts)
+            {
+
+                ImGui::Text("%s", uit.text.c_str());
+
+            }
+            ImGui::End();
+        }
+
+        ImGui::Render();
+        int display_w, display_h;
+        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    }
 
     Renderer::~Renderer() {
         glDeleteBuffers(1, &vbo);
         glDeleteBuffers(1, &ebo);
         glDeleteVertexArrays(1, &vao);
+    }
+
+    void Renderer::setWindow(GLFWwindow* win) {
+        window = win;
     }
 }

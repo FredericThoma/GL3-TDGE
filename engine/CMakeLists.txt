@@ -18,6 +18,7 @@ add_library(${ENGINE_NAME}
         ${PRIVATE_HEADER_LIST}
         ${SOURCE_LIST}
         ${IMGUI_SOURCES}
+        include/engine/rendering/UserInterface.h
 )
 
 target_compile_features(${ENGINE_NAME} PRIVATE cxx_std_17)

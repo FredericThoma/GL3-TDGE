@@ -6,6 +6,10 @@
 #include <chrono>
 #include <thread>
 
+#include "engine/rendering/Assets.h"
+#include "engine/rendering/Texture.h"
+#include "engine/rendering/UserInterface.h"
+
 namespace gl3::engine::context {
     void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
         glViewport(0, 0, width, height);
@@ -54,32 +58,8 @@ namespace gl3::engine::context {
 
             glfwPollEvents();
 
-            // Update and render your game world
-            update(*this);  // <--- Your game rendering happens here
-
-            // Start ImGui frame
-            ImGui_ImplOpenGL3_NewFrame();
-            ImGui_ImplGlfw_NewFrame();
-            ImGui::NewFrame();
-
-            // Draw ImGui content
-            ImGui::Begin("Hello, ImGui!");
-            ImGui::Text("This is a minimal ImGui window.");
-            ImGui::End();
-
-            // Render ImGui
-            ImGui::Render();
-
-            int display_w, display_h;
-            glfwGetFramebufferSize(window, &display_w, &display_h);
-            glViewport(0, 0, display_w, display_h);
-
-            // Clear only once at the beginning of frame if needed
-            glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
-            // Your game draw might already include a clear, so make sure not to clear *after* game render
-
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+            // Update happens here
+            update(*this);
 
             glfwSwapBuffers(window);
             glfwPollEvents();

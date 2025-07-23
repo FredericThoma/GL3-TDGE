@@ -45,6 +45,7 @@ namespace gl3::ecs::systems {
         gl3::renderer::Renderer& renderer;
         Texture pathTexture;
         Texture wieseTexture;
+        Texture mouseTexture;
         glm::mat4 projectionMatrix;
         glm::mat4 viewMatrix;
     };

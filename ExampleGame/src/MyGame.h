@@ -54,6 +54,24 @@ public:
         renderSystem.SetView(view);
         renderSystem.SetProjection(projection);
         renderSystem.start();
+        renderer.setWindow(getWindow());
+
+        auto uii = UIImage();
+        uii.texture = gl3::Texture(gl3::resolveAssetPath("textures/Turret.png"), false);
+        auto uit = UIText();
+        uit.text = "UITEXT ELEMENT";
+
+        std::vector<UIElement> elements;
+        auto uie = UIElement();
+        uie.images.push_back(std::move(uii));
+        auto uii2 = UIImage();
+
+        uii2.texture = gl3::Texture(gl3::resolveAssetPath("textures/TurmB.png"), false);
+        uie.images.push_back(std::move(uii2));
+        uie.texts.push_back(std::move(uit));
+        uie.title = "test";
+        elements.push_back(std::move(uie));
+        userInterface = std::make_unique<UserInterface>(std::move(elements));
         spawnSystem = std::make_unique<SpawnSystem>(registry);
         waveSystem = std::make_unique<WaveSystem>(registry);
         movementSystem = std::make_unique<MovementSystem>(registry);
@@ -111,6 +129,7 @@ public:
         entt::registry& registry = scene.getRegistry();
         renderSystem.renderGrid(grid);
         renderSystem.render(registry);
+        renderer.drawUI(*userInterface);
 
     }
 private:
@@ -124,5 +143,6 @@ private:
     std::unique_ptr<MovementSystem> movementSystem;
     std::unique_ptr<ShootingSystem> shootingSystem;
     std::unique_ptr<TargetingSystem> targetingSystem;
+    std::unique_ptr<UserInterface> userInterface;
     std::shared_ptr<Path> path;
 };

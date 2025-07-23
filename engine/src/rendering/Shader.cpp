@@ -28,7 +28,7 @@ namespace gl3 {
         glUniform1i(uniformLocation, value);
     }
 
-    void Shader::setBool(const std::string& name, bool value) {
+    void Shader::setBool(const std::string& name, bool value) const{
         glUniform1i(glGetUniformLocation(shaderProgram, name.c_str()), (int)value);
     }
 
