@@ -20,6 +20,7 @@
 #include "imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 
+#include "engine/core/InputManager.h"
 #include "engine/ecs/components/AudioClip.h"
 #include "engine/ecs/systems/AudioSystem.h"
 
@@ -54,6 +55,8 @@ public:
         renderSystem.SetProjection(projection);
         renderSystem.start();
         renderer.setWindow(getWindow());
+
+        InputManager::RegisterCallbacks(getWindow(), &inputManager);
 
         auto uiib = std::make_shared<UIImageButton>();
         uiib->id = "1";
@@ -134,6 +137,8 @@ public:
     }
 
     void update(GLFWwindow* window) override {
+        inputManager.Update();
+        handleInputs(window);
         waveSystem->update();
         spawnSystem->update();
         movementSystem->update();
@@ -141,6 +146,17 @@ public:
         shootingSystem->update();
         audioSystem->update();
     }
+
+    void handleInputs(GLFWwindow* window)
+    {
+        if (inputManager.IsKeyPressed(GLFW_KEY_ESCAPE)) {
+            glfwSetWindowShouldClose(window, 1);
+        }
+        if (inputManager.IsKeyPressed(GLFW_KEY_H)) {
+            std::cout << "H" << std::endl;
+        }
+    }
+
 
     void draw() override {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -165,4 +181,5 @@ private:
     std::unique_ptr<TargetingSystem> targetingSystem;
     std::unique_ptr<UserInterface> userInterface;
     std::shared_ptr<Path> path;
+    InputManager inputManager;
 };

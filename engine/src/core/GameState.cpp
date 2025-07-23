@@ -1,4 +1,4 @@
-#include "GameState.h"
+#include "../../include/engine/core/GameState.h"
 
 GameState::GameState() : currentState(State::Playing), currentFPS(60.0f) {}
 
