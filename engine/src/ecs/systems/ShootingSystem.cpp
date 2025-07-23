@@ -19,7 +19,6 @@ void ShootingSystem::update() {
 
         if (shooting.countdownUntilNextShot > 0.0f) {
             shooting.countdownUntilNextShot -= DELTATIME;
-            std::cout<<shooting.countdownUntilNextShot<<std::endl;
             continue;
         }
 

@@ -17,7 +17,7 @@ public:
     float getFPS() const;
 
 private:
-    GameState(); // private constructor for singleton
+    GameState();
     State currentState;
     float currentFPS;
 };

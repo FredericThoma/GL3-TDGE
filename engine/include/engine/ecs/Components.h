@@ -13,3 +13,4 @@
 #include "engine/ecs/components/Movement.h"
 #include "engine/ecs/components/Shooting.h"
 #include "engine/ecs/components/Targeting.h"
+#include "engine/ecs/components/AudioClip.h"

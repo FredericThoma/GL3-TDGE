@@ -3,6 +3,7 @@
 #include <entt/entt.hpp>
 #include <algorithm>
 
+
 void TargetingSystem::update() {
     auto view = registry.view<gl3::ecs::components::Targeting>();
 
@@ -40,7 +41,7 @@ entt::entity TargetingSystem::getNearestEnemy(entt::entity entity) const
 
     auto& transform = registry.get<gl3::ecs::components::Transform>(entity);
     glm::vec3 position = transform.position;
-    float bestDistance = std::numeric_limits<float>::max();
+    float bestDistance = (std::numeric_limits<float>::max)();
     entt::entity bestTarget = entt::null;
     auto view = registry.view<gl3::ecs::components::EnemyTag, gl3::ecs::components::Transform>();
     for (auto enemy : view) {
