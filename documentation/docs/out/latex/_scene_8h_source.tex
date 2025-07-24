@@ -1,0 +1,22 @@
+\doxysection{Scene.\+h}
+\hypertarget{_scene_8h_source}{}\label{_scene_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/Scene.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/Scene.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <entt/entt.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/rendering/Renderer.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }gl3::ecs\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgl3_1_1ecs_1_1_scene}{Scene}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ entt::registry\&\ getRegistry()\ \{\ \textcolor{keywordflow}{return}\ registry;\ \}}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ onUpdate(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ onRender(\mbox{\hyperlink{classgl3_1_1renderer_1_1_renderer}{renderer::Renderer}}\&\ renderer);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ entt::registry\ registry;}
+\DoxyCodeLine{00015\ \ \ \ \ \};}
+\DoxyCodeLine{00016\ \}}
+
+\end{DoxyCode}

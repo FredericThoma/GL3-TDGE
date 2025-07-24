@@ -1,0 +1,36 @@
+\doxysection{Texture.\+h}
+\hypertarget{_texture_8h_source}{}\label{_texture_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/Texture.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/Texture.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }gl3\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{class\ }Texture\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ Texture()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ Texture(\textcolor{keyword}{const}\ std::filesystem::path\&\ path,\ \textcolor{keywordtype}{bool}\ flipVertically\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \string~Texture();}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ Texture(\textcolor{keyword}{const}\ Texture\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ Texture\&\ operator=(\textcolor{keyword}{const}\ Texture\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ Texture(Texture\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ Texture\&\ operator=(Texture\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ bind(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ slot\ =\ 0)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ unbind()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ getID()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ textureID\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ height\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ channels\ =\ 0;}
+\DoxyCodeLine{00028\ \ \ \ \ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \}}
+
+\end{DoxyCode}

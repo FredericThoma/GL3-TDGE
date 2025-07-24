@@ -1,0 +1,58 @@
+\doxysection{Grid Class Reference}
+\hypertarget{class_grid}{}\label{class_grid}\index{Grid@{Grid}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_grid_ae6ffc1931f74af34504fbb2e8c9c843c}\label{class_grid_ae6ffc1931f74af34504fbb2e8c9c843c} 
+{\bfseries Grid} (int width, int height, float cell\+Size)
+\item 
+\Hypertarget{class_grid_a823660581fb7d3e06bfb2a0cb51c4d4b}\label{class_grid_a823660581fb7d3e06bfb2a0cb51c4d4b} 
+\mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Cell} (int x, int y)
+\item 
+\Hypertarget{class_grid_a98cd4278bc30a5b89315577585c22ab0}\label{class_grid_a98cd4278bc30a5b89315577585c22ab0} 
+const \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Cell} (int x, int y) const
+\item 
+\Hypertarget{class_grid_acd6009fbb308856b2ada47d9a44b795e}\label{class_grid_acd6009fbb308856b2ada47d9a44b795e} 
+\mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Cell\+At\+Pos} (const glm\+::vec3 \&world\+Pos)
+\item 
+\Hypertarget{class_grid_ad5199eafb6aaceef4842dcaa94936553}\label{class_grid_ad5199eafb6aaceef4842dcaa94936553} 
+const \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Cell\+At\+Pos} (const glm\+::vec3 \&world\+Pos) const
+\item 
+\Hypertarget{class_grid_ab511919a248633a1ef009d9c9ccd068d}\label{class_grid_ab511919a248633a1ef009d9c9ccd068d} 
+std\+::vector$<$ \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries Get\+Cells\+At\+Points} (const std\+::vector$<$ glm\+::vec3 $>$ \&points)
+\item 
+\Hypertarget{class_grid_a83b284c7865551eb1cb73b20e7adcad4}\label{class_grid_a83b284c7865551eb1cb73b20e7adcad4} 
+std\+::vector$<$ \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries Get\+Neighbors} (\mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*}cell)
+\item 
+\Hypertarget{class_grid_ad794171281400f6ef89d20d6d6d2ff98}\label{class_grid_ad794171281400f6ef89d20d6d6d2ff98} 
+std\+::vector$<$ \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+All\+Cells} () const
+\item 
+\Hypertarget{class_grid_adf0dac5c67f563317bc0124c21d97cbc}\label{class_grid_adf0dac5c67f563317bc0124c21d97cbc} 
+void {\bfseries Mark\+Path\+Cells} (const std\+::vector$<$ glm\+::vec2 $>$ \&path\+Indices)
+\item 
+\Hypertarget{class_grid_ae394845e6ab2ccfdfedf9697f51bef6c}\label{class_grid_ae394845e6ab2ccfdfedf9697f51bef6c} 
+std\+::vector$<$ \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries Get\+Cells\+At\+Indices} (const std\+::vector$<$ glm\+::vec2 $>$ \&cell\+Indices)
+\item 
+\Hypertarget{class_grid_af1683412be2ae2c0659e2789354c8b29}\label{class_grid_af1683412be2ae2c0659e2789354c8b29} 
+std\+::vector$<$ glm\+::vec3 $>$ {\bfseries Get\+Position\+Of\+Cells} (const std\+::vector$<$ glm\+::vec2 $>$ \&cell\+Indices)
+\item 
+\Hypertarget{class_grid_a3e3245d969ddc2452ff932445c8c60df}\label{class_grid_a3e3245d969ddc2452ff932445c8c60df} 
+int {\bfseries Get\+Cols} () const
+\item 
+\Hypertarget{class_grid_ad6166ccc007bb8e5148134f09b1b27ae}\label{class_grid_ad6166ccc007bb8e5148134f09b1b27ae} 
+int {\bfseries Get\+Rows} () const
+\item 
+\Hypertarget{class_grid_a155553eeb9b8007f1c6eb9af83645bf9}\label{class_grid_a155553eeb9b8007f1c6eb9af83645bf9} 
+\mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Cell\+By\+Cell\+Id} (int cell\+ID)
+\item 
+\Hypertarget{class_grid_a6a6fa25ae546ae50069eb7ff8a53040c}\label{class_grid_a6a6fa25ae546ae50069eb7ff8a53040c} 
+float {\bfseries Get\+Cell\+Size} () const
+\item 
+\Hypertarget{class_grid_ad6f367d90b621089481d8563d0242bc3}\label{class_grid_ad6f367d90b621089481d8563d0242bc3} 
+glm\+::vec2 {\bfseries Cell\+Position\+To\+Index} (const \mbox{\hyperlink{struct_cell}{Cell}} \texorpdfstring{$\ast$}{*}cell) const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/overo/\+Desktop/\+Game\+Lab\+III-\/\+TDGE/tdge/engine/include/engine/core/Grid.\+h\end{DoxyCompactItemize}

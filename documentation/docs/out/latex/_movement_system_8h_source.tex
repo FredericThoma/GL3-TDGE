@@ -1,0 +1,23 @@
+\doxysection{Movement\+System.\+h}
+\hypertarget{_movement_system_8h_source}{}\label{_movement_system_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/systems/MovementSystem.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/systems/MovementSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}entt/entt.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }MovementSystem\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{explicit}\ MovementSystem(entt::registry\&\ reg);}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{void}\ moveEntity(entt::entity\ entity);}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{void}\ moveEntityAlongPath(entt::entity\ entity);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ checkCanMove(entt::entity\ entity);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ entt::registry\&\ registry;}
+\DoxyCodeLine{00017\ \};}
+
+\end{DoxyCode}

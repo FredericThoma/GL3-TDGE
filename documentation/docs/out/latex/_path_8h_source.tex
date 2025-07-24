@@ -1,0 +1,29 @@
+\doxysection{Path.\+h}
+\hypertarget{_path_8h_source}{}\label{_path_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/core/Path.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/core/Path.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Grid.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}glm/vec3.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }Path\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ Path();}
+\DoxyCodeLine{00010\ \ \ \ \ Path(\textcolor{keyword}{const}\ std::vector<glm::vec2>\&\ cellIndices,\ \mbox{\hyperlink{class_grid}{Grid}}\&\ grid);}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ getPathSegmentCount()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00012\ \ \ \ \ [[nodiscard]]\ std::vector<glm::vec3>\ getPoints()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_cell}{Cell}}*\ getCellByPathSegmentIndex(\textcolor{keywordtype}{int}\ segmentIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00014\ \ \ \ \ [[nodiscard]]\ std::vector<Cell*>\ getCells()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ buildCellIndices();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::vector<glm::vec3>\ points;}
+\DoxyCodeLine{00019\ \ \ \ \ std::vector<Cell*>\ cells;}
+\DoxyCodeLine{00020\ \ \ \ \ std::unordered\_map<int,\ int>\ cellIDToIndex;}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_grid}{Grid}}*\ grid;}
+\DoxyCodeLine{00022\ \ \ \ \ std::list<Cell*>\ cellListOrdered;}
+\DoxyCodeLine{00023\ \};}
+
+\end{DoxyCode}

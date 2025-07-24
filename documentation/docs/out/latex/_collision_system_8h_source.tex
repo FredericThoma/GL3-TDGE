@@ -1,0 +1,121 @@
+\doxysection{Collision\+System.\+h}
+\hypertarget{_collision_system_8h_source}{}\label{_collision_system_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/systems/CollisionSystem.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/systems/CollisionSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <entt/entt.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/components/Collider.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/components/Transform.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }gl3::ecs::systems}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{class\ }CollisionSystem}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }CollisionCallback\ =\ std::function<void(entt::entity,\ entt::entity)>;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ CollisionSystem(CollisionCallback\ callback\ =\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ :\ onCollision(callback)\ \{\}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setCallback(CollisionCallback\ callback)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ onCollision\ =\ std::move(callback);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ update(entt::registry\&\ registry)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ view\ =\ registry.view<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_transform}{components::Transform}}>();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ view.each([\&](entt::entity\ entityA,\ \mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_transform}{components::Transform}}\&\ transformA)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (registry.all\_of<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_circle_collider}{components::CircleCollider}}>(entityA))\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ circleA\ =\ registry.get<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_circle_collider}{components::CircleCollider}}>(entityA);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ view.each([\&](entt::entity\ entityB,\ \mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_transform}{components::Transform}}\&\ transformB)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entityA\ >=\ entityB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (registry.all\_of<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_circle_collider}{components::CircleCollider}}>(entityB))\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ circleB\ =\ registry.get<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_circle_collider}{components::CircleCollider}}>(entityB);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checkCircleCircle(transformA.position,\ circleA.radius,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformB.position,\ circleB.radius))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handleCollision(entityA,\ entityB);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (registry.all\_of<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_rectangle_collider}{components::RectangleCollider}}>(entityB))\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ rectB\ =\ registry.get<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_rectangle_collider}{components::RectangleCollider}}>(entityB);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checkCircleRect(transformA.position,\ circleA.radius,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformB.position,\ rectB.width,\ rectB.height))\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handleCollision(entityA,\ entityB);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (registry.all\_of<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_rectangle_collider}{components::RectangleCollider}}>(entityA))\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ rectA\ =\ registry.get<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_rectangle_collider}{components::RectangleCollider}}>(entityA);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ view.each([\&](entt::entity\ entityB,\ \mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_transform}{components::Transform}}\&\ transformB)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entityA\ >=\ entityB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (registry.all\_of<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_rectangle_collider}{components::RectangleCollider}}>(entityB))\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ rectB\ =\ registry.get<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_rectangle_collider}{components::RectangleCollider}}>(entityB);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checkRectRect(transformA.position,\ rectA.width,\ rectA.height,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformB.position,\ rectB.width,\ rectB.height))\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handleCollision(entityA,\ entityB);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ CollisionCallback\ onCollision;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handleCollision(entt::entity\ a,\ entt::entity\ b)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (onCollision)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}handleCollision\ called\(\backslash\)n"{}}\ <<std::endl;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onCollision(a,\ b);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ checkCircleCircle(\textcolor{keyword}{const}\ glm::vec2\&\ posA,\ \textcolor{keywordtype}{float}\ radiusA,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec2\&\ posB,\ \textcolor{keywordtype}{float}\ radiusB)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distanceSq\ =\ glm::dot(posA\ -\/\ posB,\ posA\ -\/\ posB);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ radiiSum\ =\ radiusA\ +\ radiusB;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ distanceSq\ <=\ radiiSum\ *\ radiiSum;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ checkRectRect(\textcolor{keyword}{const}\ glm::vec2\&\ posA,\ \textcolor{keywordtype}{float}\ widthA,\ \textcolor{keywordtype}{float}\ heightA,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec2\&\ posB,\ \textcolor{keywordtype}{float}\ widthB,\ \textcolor{keywordtype}{float}\ heightB)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(posA.x\ +\ widthA\ /\ 2\ <\ posB.x\ -\/\ widthB\ /\ 2\ ||}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ posA.x\ -\/\ widthA\ /\ 2\ >\ posB.x\ +\ widthB\ /\ 2\ ||}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ posA.y\ +\ heightA\ /\ 2\ <\ posB.y\ -\/\ heightB\ /\ 2\ ||}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ posA.y\ -\/\ heightA\ /\ 2\ >\ posB.y\ +\ heightB\ /\ 2);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ checkCircleRect(\textcolor{keyword}{const}\ glm::vec2\&\ circlePos,\ \textcolor{keywordtype}{float}\ radius,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec2\&\ rectPos,\ \textcolor{keywordtype}{float}\ rectWidth,\ \textcolor{keywordtype}{float}\ rectHeight)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ rectHalfExtents\ =\ \{\ rectWidth\ /\ 2.0f,\ rectHeight\ /\ 2.0f\ \};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ diff\ =\ circlePos\ -\/\ rectPos;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ clamped\ =\ glm::clamp(diff,\ -\/rectHalfExtents,\ rectHalfExtents);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ closest\ =\ rectPos\ +\ clamped;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distanceSq\ =\ glm::dot(circlePos\ -\/\ closest,\ circlePos\ -\/\ closest);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ distanceSq\ <=\ radius\ *\ radius;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \};}
+\DoxyCodeLine{00115\ \}}
+
+\end{DoxyCode}

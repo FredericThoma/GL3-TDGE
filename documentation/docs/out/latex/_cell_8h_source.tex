@@ -1,0 +1,45 @@
+\doxysection{Cell.\+h}
+\hypertarget{_cell_8h_source}{}\label{_cell_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/core/Cell.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/core/Cell.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}glm/vec3.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{enum\ class}\ CellType\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ Empty,}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_path}{Path}},}
+\DoxyCodeLine{00010\ \ \ \ \ Buildable,}
+\DoxyCodeLine{00011\ \ \ \ \ Blocked}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{inline}\ std::string\ to\_string(CellType\ type)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{case}\ CellType::Empty:\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Empty"{}};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{case}\ CellType::Path:\ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Path"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{case}\ CellType::Buildable:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Buildable"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{case}\ CellType::Blocked:\ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Blocked"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{default}:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Unknown"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }Cell\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ CellType\ type;}
+\DoxyCodeLine{00026\ \ \ \ \ glm::vec3\ worldPosition;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ size;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ visited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00030\ \ \ \ \ Cell(CellType\ type\ =\ CellType::Empty,\ \textcolor{keyword}{const}\ glm::vec3\&\ worldPosition\ =\ glm::vec3(0.0f),\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ 0,\ \textcolor{keywordtype}{int}\ cellSize\ =\ 10)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ :\ type(type),\ worldPosition(worldPosition),\ id(\textcolor{keywordtype}{id}),\ size(cellSize)\ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ glm::vec3\ getWorldPositionCenter()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ halfSize\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(size)\ /\ 2.0f;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ worldPosition\ +\ glm::vec3(-\/halfSize,\ -\/halfSize,\ 0.0f);}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \};}
+
+\end{DoxyCode}

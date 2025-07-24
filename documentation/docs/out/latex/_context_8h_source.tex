@@ -1,0 +1,26 @@
+\doxysection{Context.\+h}
+\hypertarget{_context_8h_source}{}\label{_context_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/Context.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/Context.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <glad/glad.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <GLFW/glfw3.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }gl3::engine::context\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }Context\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Callback\ =\ std::function<void(Context\&)>;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ Context(\textcolor{keywordtype}{int}\ width\ =\ 800,\ \textcolor{keywordtype}{int}\ height\ =\ 600,\ \textcolor{keyword}{const}\ std::string\ \&title\ =\ \textcolor{stringliteral}{"{}Game"{}});}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Context();}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ run(\textcolor{keyword}{const}\ Callback\&\ update);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ [[nodiscard]]\ GLFWwindow\ *getWindow()\ \{\ \textcolor{keywordflow}{return}\ window;\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ GLFWwindow\ *window\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \}}
+
+\end{DoxyCode}

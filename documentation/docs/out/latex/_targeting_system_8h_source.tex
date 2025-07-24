@@ -1,0 +1,23 @@
+\doxysection{Targeting\+System.\+h}
+\hypertarget{_targeting_system_8h_source}{}\label{_targeting_system_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/systems/TargetingSystem.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/systems/TargetingSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Components.h"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }TargetingSystem\ \{}
+\DoxyCodeLine{00004\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{explicit}\ TargetingSystem(entt::registry\&\ registry)\ :\ registry(registry)\ \{\};}
+\DoxyCodeLine{00006\ \ \ \ \ \string~TargetingSystem()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00008\ \ \ \ \ entt::entity\ getNearestEnemy(entt::entity\ entity)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00009\ \ \ \ \ entt::entity\ getLowestEnemy()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00010\ \ \ \ \ entt::entity\ getFurthestEnemy()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ entt::registry\&\ registry;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+
+\end{DoxyCode}

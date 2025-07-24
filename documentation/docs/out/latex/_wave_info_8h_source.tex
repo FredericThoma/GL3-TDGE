@@ -1,0 +1,23 @@
+\doxysection{Wave\+Info.\+h}
+\hypertarget{_wave_info_8h_source}{}\label{_wave_info_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/waves/WaveInfo.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/waves/WaveInfo.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}glm/vec3.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_spawn_info}{SpawnInfo}}\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{float}\ delay;}
+\DoxyCodeLine{00007\ \ \ \ \ std::string\ type;}
+\DoxyCodeLine{00008\ \ \ \ \ glm::vec3\ position;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ health\ =\ 100.0f;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{bool}\ spawned\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00011\ \};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_wave_info}{WaveInfo}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ wave\_id;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ current\_time\ =\ 0.0f;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ duration\ =\ 10.0f;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ std::vector<SpawnInfo>\ spawns;}
+\DoxyCodeLine{00017\ \ \ \ \ \};}
+
+\end{DoxyCode}

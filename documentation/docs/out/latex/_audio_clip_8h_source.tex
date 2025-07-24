@@ -1,0 +1,44 @@
+\doxysection{Audio\+Clip.\+h}
+\hypertarget{_audio_clip_8h_source}{}\label{_audio_clip_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/components/AudioClip.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/components/AudioClip.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}soloud\_wav.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/rendering/Assets.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }gl3::ecs::components}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{struct\ }AudioClip\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ std::filesystem::path\ relativeAssetPath;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ std::unique\_ptr<SoLoud::Wav>\ sound\ =\ std::make\_unique<SoLoud::Wav>();}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ volume;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ shouldPlay\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ looping\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ AudioClip(std::filesystem::path\ relativeAssetPath,\ \textcolor{keywordtype}{float}\ vol\ =\ 1.0f,\ \textcolor{keywordtype}{bool}\ loop\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ :\ relativeAssetPath(std::move(relativeAssetPath)),\ volume(vol),\ shouldPlay(\textcolor{keyword}{false}),\ looping(loop)}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ sound-\/>load(gl3::resolveAssetPath(this-\/>relativeAssetPath).\textcolor{keywordtype}{string}().c\_str());}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Play()}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ sound-\/>setLooping(\textcolor{keyword}{false});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ looping\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ shouldPlay\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PlayLooping()}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ sound-\/>setLooping(\textcolor{keyword}{true});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ looping\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ shouldPlay\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}

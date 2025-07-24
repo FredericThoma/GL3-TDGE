@@ -1,0 +1,34 @@
+\doxysection{Renderer.\+h}
+\hypertarget{_renderer_8h_source}{}\label{_renderer_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/Renderer.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/Renderer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Shader.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Texture.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}UserInterface.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}GLFW/glfw3.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }gl3::renderer\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }Renderer\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ Renderer();}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \string~Renderer();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setWindow(GLFWwindow*\ window);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ drawQuad(\textcolor{keyword}{const}\ glm::mat4\&\ mvp,\ \textcolor{keyword}{const}\ glm::vec4\&\ color)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ drawTexturedQuad(\textcolor{keyword}{const}\ glm::mat4\&\ mvp,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgl3_1_1_texture}{Texture}}*\ texture,\ \textcolor{keyword}{const}\ glm::vec4\&\ tint)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ drawMouse(\mbox{\hyperlink{classgl3_1_1_texture}{Texture}}\&\ texture)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ drawUI(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_user_interface}{UserInterface}}\&\ userInterface)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ vao,\ vbo,\ ebo;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl3_1_1_shader}{Shader}}\ shader;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgl3_1_1_texture}{Texture}}\ texture;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ GLFWwindow*\ window\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}

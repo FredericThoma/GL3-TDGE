@@ -1,0 +1,24 @@
+\doxysection{Sprite.\+h}
+\hypertarget{_sprite_8h_source}{}\label{_sprite_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/components/Sprite.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/components/Sprite.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/rendering/Texture.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }gl3::ecs::components\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{struct\ }Sprite\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ std::shared\_ptr<Texture>\ texture\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ glm::vec4\ color\ =\ \{1.0f,\ 1.0f,\ 1.0f,\ 1.0f\};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ Sprite()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ Sprite(std::shared\_ptr<Texture>\ tex,\ \textcolor{keyword}{const}\ glm::vec4\&\ tint\ =\ \{1,\ 1,\ 1,\ 1\})}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ :\ texture(std::move(tex)),\ color(tint)\ \{\}}
+\DoxyCodeLine{00016\ \ \ \ \ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \}}
+
+\end{DoxyCode}

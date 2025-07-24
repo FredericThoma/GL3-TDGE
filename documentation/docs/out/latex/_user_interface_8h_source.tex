@@ -1,0 +1,95 @@
+\doxysection{User\+Interface.\+h}
+\hypertarget{_user_interface_8h_source}{}\label{_user_interface_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/UserInterface.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/UserInterface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Texture.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <imgui.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }UIImage}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{classgl3_1_1_texture}{gl3::Texture}}\ texture;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ UIImage()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00012\ \ \ \ \ \string~UIImage()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ UIImage(\textcolor{keyword}{const}\ UIImage\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \ \ UIImage(UIImage\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00016\ \ \ \ \ UIImage\&\ operator=(\textcolor{keyword}{const}\ UIImage\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00017\ \ \ \ \ UIImage\&\ operator=(UIImage\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }UIImageButton}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ id;}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classgl3_1_1_texture}{gl3::Texture}}\ texture;}
+\DoxyCodeLine{00024\ \ \ \ \ std::function<void()>\ onClick;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ selected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00026\ \ \ \ \ ImVec4\ bg\_col\ =\ ImVec4(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00027\ \ \ \ \ ImVec4\ bg\_col\_unsel\ =\ ImVec4(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00028\ \ \ \ \ ImVec4\ bg\_col\_sel\ =\ ImVec4(0.5,\ 0.5,\ 0.6,\ 1);}
+\DoxyCodeLine{00029\ \ \ \ \ ImVec4\ tint\_col\ =\ ImVec4(1,\ 1,\ 1,\ 1);}
+\DoxyCodeLine{00030\ \ \ \ \ ImVec2\ uv0\ =\ ImVec2(0.0f,\ 0.0f);}
+\DoxyCodeLine{00031\ \ \ \ \ ImVec2\ uv1\ =\ ImVec2(1.0f,\ 1.0f);}
+\DoxyCodeLine{00032\ \ \ \ \ ImVec2\ scale\ =\ ImVec2(100.0f,\ 100.0f);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ UIImageButton()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00035\ \ \ \ \ \string~UIImageButton()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ UIImageButton(\textcolor{keyword}{const}\ UIImageButton\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00038\ \ \ \ \ UIImageButton(UIImageButton\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ \ \ \ \ UIImageButton\&\ operator=(\textcolor{keyword}{const}\ UIImageButton\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00040\ \ \ \ \ UIImageButton\&\ operator=(UIImageButton\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }UIText}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ std::string\ text;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ UIText()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{explicit}\ UIText(\textcolor{keyword}{const}\ std::string\&\ t)\ :\ text(t)\ \{\}}
+\DoxyCodeLine{00050\ \ \ \ \ \string~UIText()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ UIText(\textcolor{keyword}{const}\ UIText\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00053\ \ \ \ \ UIText(UIText\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00054\ \ \ \ \ UIText\&\ operator=(\textcolor{keyword}{const}\ UIText\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00055\ \ \ \ \ UIText\&\ operator=(UIText\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }UIElement}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ std::string\ title;}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<UIText>\ texts;}
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<UIImage>\ images;}
+\DoxyCodeLine{00063\ \ \ \ \ std::vector<std::shared\_ptr<UIImageButton>>\ imageButtons;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ UIElement()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00066\ \ \ \ \ UIElement(\textcolor{keyword}{const}\ std::string\&\ t)\ :\ title(t)\ \{\}}
+\DoxyCodeLine{00067\ \ \ \ \ \string~UIElement()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ UIElement(\textcolor{keyword}{const}\ UIElement\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00070\ \ \ \ \ UIElement(UIElement\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00071\ \ \ \ \ UIElement\&\ operator=(\textcolor{keyword}{const}\ UIElement\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00072\ \ \ \ \ UIElement\&\ operator=(UIElement\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }UserInterface}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ \ \ std::vector<UIElement>\ elements;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ UserInterface()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00081\ \ \ \ \ \string~UserInterface()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ UserInterface(\textcolor{keyword}{const}\ UserInterface\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00084\ \ \ \ \ UserInterface(UserInterface\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00085\ \ \ \ \ UserInterface\&\ operator=(\textcolor{keyword}{const}\ UserInterface\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00086\ \ \ \ \ UserInterface\&\ operator=(UserInterface\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{explicit}\ UserInterface(std::vector<UIElement>\&\&\ elems)\ :\ elements(std::move(elems))\ \{\}}
+\DoxyCodeLine{00089\ \};}
+
+\end{DoxyCode}

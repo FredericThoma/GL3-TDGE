@@ -1,0 +1,21 @@
+\doxysection{Assets.\+h}
+\hypertarget{_assets_8h_source}{}\label{_assets_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/Assets.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/rendering/Assets.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ GET\_STRING(x)\ \#x}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ GET\_DIR(x)\ GET\_STRING(x)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }fs\ =\ std::filesystem;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }gl3\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{inline}\ fs::path\ resolveAssetPath(\textcolor{keyword}{const}\ fs::path\ \&relativeAssetPath)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ mergedPath\ =\ (GET\_DIR(ASSET\_ROOT)\ /\ relativeAssetPath).make\_preferred();}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fs::canonical(mergedPath);}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+\DoxyCodeLine{00015\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,184 @@
+\chapter{Getting started }
+\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge}{}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge}\index{Getting started@{Getting started}}
+\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md1}%
+\Hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md1}%
+
+
+This is a simple quick start guide how to start developing games with this engine.
+
+Make sure you followed the steps in Quick\+Start.\+md\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md2}{}\doxysection{\texorpdfstring{Minimal Setup}{Minimal Setup}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item Create new folder in project root \textquotesingle{}My\+Awesome\+Game\textquotesingle{} and \textquotesingle{}CMake\+Lists.\+txt\textquotesingle{} inside that folder
+\item Create a folder \textquotesingle{}My\+Awesome\+Game/src\textquotesingle{}
+\item In project root\+: Open "{}\+CMake\+Lists.\+txt"{} and add this line\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{add\_subdirectory(MyAwesomeGame)}
+
+\end{DoxyCode}
+
+\item In My\+Awesome\+Game/src\+: Create 3 Files\+: \textquotesingle{}main.\+cpp\textquotesingle{}, \textquotesingle{}My\+Awesome\+Game.\+h\textquotesingle{}
+\end{DoxyEnumerate}\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md3}{}\doxysubsection{\texorpdfstring{My\+Awesome\+Game/src/\+My\+Awesome\+Game.\+h}{My\+Awesome\+Game/src/\+My\+Awesome\+Game.\+h}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}engine/Game.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }gl3::engine;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }MyAwesomeGame\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl3_1_1engine_1_1_game}{Game}}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ MyAwesomeGame()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ :\ Game(1280,\ 1280,\ \textcolor{stringliteral}{"{}My\ 2D\ Game"{}})}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ start()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ runs\ once,\ when\ the\ game\ is\ started}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ update(GLFWwindow*\ window)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ runs\ every\ frame}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ draw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ runs\ every\ frame\ after\ update}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ \hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md4}{}\doxysubsection{\texorpdfstring{My\+Awesome\+Game/src/main.\+cpp}{My\+Awesome\+Game/src/main.\+cpp}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}MyAwesomeGame.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ game\ =\ \textcolor{keyword}{new}\ MyAwesomeGame();}
+\DoxyCodeLine{\ \ \ \ game-\/>run();}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyEnumerate}
+\item In dir \textquotesingle{}My\+Awesome\+Game\textquotesingle{}\+: Open \textquotesingle{}CMake\+Lists.\+txt\textquotesingle{} and add the following content\+:
+\end{DoxyEnumerate}\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md5}{}\doxysubsection{\texorpdfstring{My\+Awesome\+Game/\+CMake\+Lists.\+txt}{My\+Awesome\+Game/\+CMake\+Lists.\+txt}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md5}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\_minimum\_required(VERSION\ 3.18)}
+\DoxyCodeLine{}
+\DoxyCodeLine{set(SOURCE\_FILES\ src/main.cpp)}
+\DoxyCodeLine{set(EXE\_FILE\ MyAwesomeGame)}
+\DoxyCodeLine{}
+\DoxyCodeLine{add\_executable(\$\{EXE\_FILE\}\ \$\{SOURCE\_FILES\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{target\_compile\_features(\$\{EXE\_FILE\}\ PRIVATE\ cxx\_std\_17)}
+\DoxyCodeLine{}
+\DoxyCodeLine{target\_link\_libraries(\$\{EXE\_FILE\}\ PRIVATE\ Engine)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Reload CMake Project -\/\texorpdfstring{$>$}{>} Build -\/\texorpdfstring{$>$}{>} Run
+\end{DoxyEnumerate}
+
+{\bfseries{That\textquotesingle{}s it! You are now ready to start developing your Game!}}\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md6}{}\doxysection{\texorpdfstring{Next Steps\+:}{Next Steps\+:}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md6}
+\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md7}{}\doxysubsection{\texorpdfstring{Create a Scene \& Add Game\+Objects}{Create a Scene \& Add Game\+Objects}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md7}
+We first need to create a Scene and get the Scenes registry. The registry is responsible for storing and handling Entites(a.\+k.\+a Game\+Objects) and their Components. Then we can add Game\+Objects to our Scene via \textquotesingle{}registry-\/\texorpdfstring{$>$}{>}create()\textquotesingle{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}engine/Game.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}engine/ecs/Scene.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}tiny\_gltf/tiny\_gltf.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }gl3::engine;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }MyAwesomeGame\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgl3_1_1engine_1_1_game}{Game}}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ MyAwesomeGame()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ :\ Game(1280,\ 1280,\ \textcolor{stringliteral}{"{}My\ 2D\ Game"{}})}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ start()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\textcolor{keyword}{}\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Instantiate\ a\ new\ Scene\ and\ get\ it's\ registry}}
+\DoxyCodeLine{scene\ =\ gl3::ecs::Scene();}
+\DoxyCodeLine{registry\ =\ \&scene.getRegistry();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ our\ first\ GameObject}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ entt::entity\ gameObject\ =\ registry-\/>create();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ update(GLFWwindow*\ window)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ runs\ every\ frame}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ draw()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ runs\ every\ frame\ after\ update}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{private}:}
+\DoxyCodeLine{gl3::ecs::Scene\ scene;}
+\DoxyCodeLine{entt::registry\ *registry;}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md8}{}\doxysubsection{\texorpdfstring{Attach Components to Game\+Objects}{Attach Components to Game\+Objects}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md8}
+You can add all components in engine/ecs/components to Game\+Objects. These are later used by the Systems to act on entities which have specific components. This is an example of how to add an "{}\+Transform"{} Component as well as a "{}\+Sprite"{} Component to a Game\+Object. those are the prerequisites for rendering them. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{entt::entity\ entity\ =\ registry.create();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ registry.emplace<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_transform}{gl3::ecs::components::Transform}}>(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ entity,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ glm::vec3(500.0,\ 500.0f,\ 1.0f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 0.0f,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ glm::vec2(300.0f,\ 300.0f)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ registry.emplace<\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_targeting}{gl3::ecs::components::Targeting}}>(entity);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Wave\+System Setup}{Wave\+System Setup}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md9}
+To set up the \doxylink{class_wave_system}{Wave\+System}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ start()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ waveSystem\ =\ std::make\_unique<WaveSystem>(registry);}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ all\_waves\ =\ waveSystem-\/>allWavesFromJson(gl3::resolveAssetPath(\textcolor{stringliteral}{"{}wave\_definition\_test.json"{}}));}
+\DoxyCodeLine{waveSystem-\/>setWaves(all\_waves);}
+\DoxyCodeLine{waveSystem-\/>resetWaves();}
+\DoxyCodeLine{\textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ update()\{}
+\DoxyCodeLine{waveSystem-\/>update();}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+You are now ready to define your waves via "{}/assets/wave\+\_\+definition\+\_\+test.\+json"{}\hypertarget{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md10}{}\doxysubsubsection{\texorpdfstring{Next Steps\+:}{Next Steps\+:}}\label{md__c_1_2_users_2overo_2_desktop_2_game_lab_i_i_i-_t_d_g_e_2tdge_2docs_2wiki_2eninge_autotoc_md10}
+
+\begin{DoxyItemize}
+\item Set up the render\+System (similar to wave\+System, feel free to take a look at the docs)
+\item call it in Update to render all entities with Sprite and Transform Component
+\item Define a \doxylink{class_path}{Path} that enemies can follow
+\item Attach colliders / Movement\+Components
+\item ...
+\item Have Fun!
+\item 
+\end{DoxyItemize}

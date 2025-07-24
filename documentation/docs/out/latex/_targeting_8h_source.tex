@@ -1,0 +1,24 @@
+\doxysection{Targeting.\+h}
+\hypertarget{_targeting_8h_source}{}\label{_targeting_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/components/Targeting.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/ecs/components/Targeting.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}entt/entt.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }gl3::ecs::components}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{enum\ class}\ TargetingMode\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ Nearest,}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ LowestHealth,}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ FurthestAdvanced,}
+\DoxyCodeLine{00011\ \ \ \ \ \};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgl3_1_1ecs_1_1components_1_1_targeting}{Targeting}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ TargetingMode\ mode\ =\ TargetingMode::Nearest;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ entt::entity\ target\ =\ entt::null;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ glm::vec3\ targetPosition\ =\ glm::vec3(0.0f);}
+\DoxyCodeLine{00017\ \ \ \ \ \};}
+\DoxyCodeLine{00018\ \}}
+
+\end{DoxyCode}

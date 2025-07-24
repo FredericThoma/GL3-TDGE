@@ -1,0 +1,43 @@
+\doxysection{Input\+Manager.\+h}
+\hypertarget{_input_manager_8h_source}{}\label{_input_manager_8h_source}\index{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/core/InputManager.h@{C:/Users/overo/Desktop/GameLabIII-\/TDGE/tdge/engine/include/engine/core/InputManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}glad/glad.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GLFW/glfw3.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}glm/vec2.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_input_manager}{InputManager}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{void}\ Update();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsKeyPressed(\textcolor{keywordtype}{int}\ key)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsKeyDown(\textcolor{keywordtype}{int}\ key)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsKeyReleased(\textcolor{keywordtype}{int}\ key)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsMouseButtonPressed(\textcolor{keywordtype}{int}\ button)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00017\ \ \ \ \ glm::vec2\ GetMousePosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ SetKeyState(\textcolor{keywordtype}{int}\ key,\ \textcolor{keywordtype}{int}\ action);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ SetMouseButtonState(\textcolor{keywordtype}{int}\ button,\ \textcolor{keywordtype}{int}\ action);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ SetMousePosition(\textcolor{keywordtype}{double}\ xpos,\ \textcolor{keywordtype}{double}\ ypos);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ KeyCallback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ key,\ \textcolor{keywordtype}{int}\ scancode,\ \textcolor{keywordtype}{int}\ action,\ \textcolor{keywordtype}{int}\ mods);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ MouseButtonCallback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ button,\ \textcolor{keywordtype}{int}\ action,\ \textcolor{keywordtype}{int}\ mods);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CursorPosCallback(GLFWwindow*\ window,\ \textcolor{keywordtype}{double}\ xpos,\ \textcolor{keywordtype}{double}\ ypos);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ RegisterCallbacks(GLFWwindow*\ window,\ \mbox{\hyperlink{class_input_manager}{InputManager}}*\ inputManager);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ std::unordered\_map<int,\ bool>\ keysPressed;}
+\DoxyCodeLine{00031\ \ \ \ \ std::unordered\_map<int,\ bool>\ keysDown;}
+\DoxyCodeLine{00032\ \ \ \ \ std::unordered\_map<int,\ bool>\ keysReleased;}
+\DoxyCodeLine{00033\ \ \ \ \ std::unordered\_map<int,\ bool>\ prevKeyState;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ std::unordered\_map<int,\ bool>\ mouseButtons;}
+\DoxyCodeLine{00036\ \ \ \ \ glm::vec2\ mousePos\ =\ glm::vec2(0.0f);}
+\DoxyCodeLine{00037\ \};}
+
+\end{DoxyCode}
