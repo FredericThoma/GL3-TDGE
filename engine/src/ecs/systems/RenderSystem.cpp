@@ -20,7 +20,6 @@ namespace gl3::ecs::systems {
     {
         pathTexture = Texture(resolveAssetPath("textures/PathTexture.png"));
         wieseTexture = Texture(resolveAssetPath("textures/Grass.png"));
-        mouseTexture = Texture(resolveAssetPath("textures/Bullet.png"));
     }
 
 

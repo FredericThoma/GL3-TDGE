@@ -2,19 +2,62 @@
   "waves": [
     {
       "wave_id": 1,
-      "duration": 10.0,
+      "duration": 30.0,
       "spawns": [
-        { "delay": 0.0, "type": "enemy_type_A", "position": [50.0, 50.0, 1.0] },
-        { "delay": 4.0, "type": "enemy_type_A", "position": [5.0, 0.0, 1.0] },
-        { "delay": 8.0, "type": "enemy_type_B", "position": [5.0, 0.0, 1.0] }
+        { "delay": 0.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 1.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 1.8, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 2.5, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 3.1, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 3.6, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 4.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 4.8, "type": "enemy_type_C", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 5, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 6, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 7, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 8, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 9, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 10, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 11, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 12, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 13, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 14, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 15, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 16, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 17, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 18, "type": "enemy_type_C", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 19, "type": "enemy_type_C", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 20, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 20.5, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 21, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 22.5, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 23, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 24, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 25, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 26, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 27, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 29, "type": "enemy_type_D", "position": [-100.0, 300.0, 1.0] }
+
+
       ]
     },
     {
       "wave_id": 2,
       "duration": 30.0,
       "spawns": [
-        { "delay": 0.0, "type": "enemy_type_A", "position": [3.0, 1.0, 1.0] },
-        { "delay": 0.5, "type": "enemy_type_A", "position": [3.0, 1.0, 1.0] }
+        { "delay": 0.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 2.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 4.5, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 7.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 9.5, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 12.0, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 14.5, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 17.0, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 19.5, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 22.0, "type": "enemy_type_A", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 24.5, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 27.0, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] },
+        { "delay": 29.5, "type": "enemy_type_B", "position": [-100.0, 300.0, 1.0] }
       ]
     }
   ]

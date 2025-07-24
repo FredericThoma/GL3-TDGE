@@ -31,7 +31,7 @@ void SpawnSystem::spawnBullet(entt::entity bulletSpawnRequest)
 {
     auto projectile = registry.get<gl3::ecs::components::Projectile>(bulletSpawnRequest);
     auto transform = std::make_unique<gl3::ecs::components::Transform>(projectile.startPosition, 0.0f, glm::vec2(100.0f, 100.0f));
-    auto texture = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/IceBall.png"));
+    auto texture = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/IceBallSmall.png"));
     auto sprite = std::make_unique<gl3::ecs::components::Sprite>(texture, glm::vec4(1.0f));
     auto movement = std::make_unique<gl3::ecs::components::Movement>();
     auto direction = glm::normalize(projectile.targetPosition - projectile.startPosition);
@@ -46,7 +46,7 @@ void SpawnSystem::spawnEnemy(entt::entity enemySpawnRequest) {
 
     auto health = spawnInfo.health;
     auto transform = std::make_unique<gl3::ecs::components::Transform>(position, 0.0f, glm::vec2(100.0f, 100.0f));
-    auto texture = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/enemy.png"));
+    auto texture = std::make_shared<gl3::Texture>(gl3::resolveAssetPath("textures/Ghost.png"));
     auto sprite = std::make_unique<gl3::ecs::components::Sprite>(texture, glm::vec4(1.0f));
     auto movement = std::make_unique<gl3::ecs::components::Movement>();
     movement->velocity = glm::vec3(1.0f, 1.0f, 0.0f);
