@@ -1,13 +1,3 @@
-# ============ #
-# OS generated #
-# ============ #
-
-*.DS_Store
-*.DS_Store?
-*._*
-*.Spotlight-V100
-*.Trashes
-*.ehthumbs.db
-*Thumbs.db
-~$*.ppt*
-*.swp
+cmake-build-debug
+cmake-build-release
+**/docs/out

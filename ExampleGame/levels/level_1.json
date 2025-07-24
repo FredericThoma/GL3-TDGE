@@ -1,0 +1,29 @@
+{
+  "waves": [
+    {
+      "wave_id": 1,
+      "duration": 10.0,
+      "spawns": [
+        { "delay": 0.0, "type": "enemy_type_A", "position": [-100, 50.0, 1.0] },
+        { "delay": 4.0, "type": "enemy_type_A", "position": [-100, 0.0, 1.0] },
+        { "delay": 8.0, "type": "enemy_type_B", "position": [-100, 0.0, 1.0] }
+      ]
+    },
+    {
+      "wave_id": 2,
+      "duration": 30.0,
+      "spawns": [
+        { "delay": 0.0, "type": "enemy_type_A", "position": [3.0, 1.0, 1.0] },
+        { "delay": 0.5, "type": "enemy_type_A", "position": [3.0, 1.0, 1.0] }
+      ]
+    },
+    {
+      "wave_id": 3,
+      "duration": 30.0,
+      "spawns": [
+        { "delay": 0.0, "type": "enemy_type_A", "position": [3.0, 1.0, 1.0] },
+        { "delay": 0.5, "type": "enemy_type_A", "position": [3.0, 1.0, 1.0] }
+      ]
+    }
+  ]
+}
