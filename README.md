@@ -3,11 +3,9 @@
 
 |  General Info  | |
 | ---|---|
-| Working Title | TDGE |
-| Final Title | TDGE |
+| Final Title | TDGE - Tower Defense Game Engine |
 | Student | Frederic Thoma, frederic.thoma@stud-mail.uni-wuerzburg.de|
 | Target Platform(s) | Windows |
-| Start Date | 21.10.2023 |
 | Study Program | Games Engineering B.Sc.|
 | Engine Version | Unity 2021.3.11f1 or Unreal 5.0.3 |
 
